@@ -11,6 +11,9 @@ __pycache__/
 best.pt
 last.pt
 
+# dataset folder
+dataset/
+
 
 
 # Distribution / packaging
