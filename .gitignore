@@ -14,6 +14,9 @@ last.pt
 # dataset folder
 dataset/
 
+# train runs
+runs/
+
 
 
 # Distribution / packaging

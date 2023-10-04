@@ -6,7 +6,7 @@ import torch
 model = YOLO('yolov8x.pt')  # load a pretrained model (recommended for training)
 model = YOLO('yolov8x.yaml').load('yolov8x.pt')  # build from YAML and transfer weights
 
-dataDIR = 'D:/Thesis/Real-Time-Crack-Detection-Model-Over-Railway-Tracks-using-YOLOv8/dataset/data.yaml'
+dataDIR = 'D:/Thesis/Real-Time-Crack-Detection-Model-Over-Railway-Tracks-using-YOLOv8/dataset/railwayDataset/data.yaml'
 
 # Train the model
 def run():
