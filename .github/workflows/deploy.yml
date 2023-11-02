@@ -9,9 +9,13 @@ jobs:
 
         runs-on: ubuntu-latest
 
+        defaults:
+          run:
+            working-directory: './Web App/thesis-webapp'
+
         strategy:
             matrix:
-              node-version: [16.x]
+              node-version: [16.x, 18.x]
               # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
         steps:
@@ -22,13 +26,11 @@ jobs:
                cache: 'npm'
                cache-dependency-path: './Web App/thesis-webapp/package-lock.json'
             - run: npm ci
-              working-directory: './Web App/thesis-webapp'
             - run: npm run build
-              working-directory: './Web App/thesis-webapp'
             - run: npm run test
-              working-directory: './Web App/thesis-webapp'
+
               
             - name: Deploy site
               run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
-              working-directory: './Web App/thesis-webapp'
+
            
