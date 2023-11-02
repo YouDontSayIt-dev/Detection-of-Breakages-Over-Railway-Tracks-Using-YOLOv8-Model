@@ -41,8 +41,8 @@ function HomePage() {
           </HomePageButton>
       </div>
 
-      <div className="w-2/5 relative">
-        <div className="absolute bottom-0 right-0">
+      <div className="w-2/5 relative overflow-hidden">
+        <div className="absolute -bottom-20 -right-20">
           <img src="img/train.png"></img>
         </div>
       </div>
