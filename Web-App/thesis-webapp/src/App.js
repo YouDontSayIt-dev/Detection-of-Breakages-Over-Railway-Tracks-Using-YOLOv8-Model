@@ -2,6 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage";
 import Detect from "./pages/Detect";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/HomePage";
+import Detect from "./pages/Detect";
+
 export default function App() {
   return (
     <div>
@@ -13,6 +17,5 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     </div>
-
   );
 }
