@@ -19,6 +19,8 @@ jobs:
             - uses: actions/setup-node@main
               with:
                node-version: ${{ matrix.node-version }}
+               cache: 'npm'
+               cache-dependency-path: ../Web App/thesis-webapp/package-lock.json
             - run: npm ci
               working-directory: ../Web App/thesis-webapp
             - run: npm run build
