@@ -20,7 +20,7 @@ We have utilized YOLOv8, a state-of-the-art object detection model released in J
 | Name  | Role |
 | ------------- | ------------- |
 | Mathew James Muyco  | Project Lead |
-| James Luis Blanco  | Team Leader |
+| James Luis Blanco  | Developer |
 | Jhon Mark Haber  | UI/UX Designer |
 | Dominique Libardo  | Developer |
 | Sephter Pajo  | Developer |
