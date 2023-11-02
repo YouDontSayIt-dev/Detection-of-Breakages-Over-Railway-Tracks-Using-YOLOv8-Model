@@ -19,15 +19,14 @@ jobs:
             - uses: actions/setup-node@main
               with:
                node-version: ${{ matrix.node-version }}
-
             - run: npm ci
-              working-directory: ./Web App/thesis-webapp
+              working-directory: ../Web App/thesis-webapp
             - run: npm run build
-              working-directory: ./Web App/thesis-webapp
+              working-directory: ../Web App/thesis-webapp
             - run: npm run test
-              working-directory: ./Web App/thesis-webapp
+              working-directory: ../Web App/thesis-webapp
 
             - name: Deploy site
               run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
-              working-directory: ./Web App/thesis-webapp
+              working-directory: ../Web App/thesis-webapp
            
