@@ -26,7 +26,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './Web App/thesis-webapp/package-lock.json'
     - run: npm ci
-      working-directory: './Web App/'
+      working-directory: './Web App/thesis-webapp'
     - run: npm run build
       working-directory: './Web App/thesis-webapp'
     - run: npm run test
