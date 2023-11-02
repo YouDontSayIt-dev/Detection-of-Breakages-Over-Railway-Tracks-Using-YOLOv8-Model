@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders title text', () => {
+test('Rendering Title Text', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Rail Detect/i);
+  const linkElement = screen.getByText(/RAIL DETECT/i);
   expect(linkElement).toBeInTheDocument();
 });
+
