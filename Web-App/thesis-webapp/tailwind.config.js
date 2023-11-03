@@ -3,6 +3,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+
       backgroundColor: {
         "custom-green": "#001E04",
         "custom-nav-green": "#1E3D22",
@@ -14,6 +15,7 @@ module.exports = {
     },
     fontFamily: {
       custom: ["Open Sans", "sans-serif"],
+      Open: ['Open Sans'],
     },
     textColor: {
       "custom-text-orange": "#F19C1B",
