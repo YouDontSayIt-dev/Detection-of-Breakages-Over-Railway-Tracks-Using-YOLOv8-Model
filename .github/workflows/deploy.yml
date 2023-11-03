@@ -11,7 +11,7 @@ jobs:
 
         defaults:
           run:
-            working-directory: './Web App/thesis-webapp'
+            working-directory: './Web-App/thesis-webapp'
 
         strategy:
             matrix:
@@ -24,7 +24,7 @@ jobs:
               with:
                node-version: ${{ matrix.node-version }}
                cache: 'npm'
-               cache-dependency-path: './Web App/thesis-webapp/package-lock.json'
+               cache-dependency-path: './Web-App/thesis-webapp/package-lock.json'
             - run: npm ci
             - run: npm run build
             - run: npm run test
