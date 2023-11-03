@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function HomePage() {
   return (
 
+
     <div className="flex flex-row min-h-screen bg-[#001E04] font-Open relative">
       <div className="w-3/5 px-28 pt-[100px]">
         <div>
@@ -63,5 +64,6 @@ function HomePageButton(props){
     </button>
   )
 }
+
 
 export default HomePage;
