@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import HomePageButton from "../components/HomePageButton";
+import camera from "../assets/camera.svg";
+import train from "../assets/train.png";
 
 function HomePage() {
   return (
@@ -13,7 +16,11 @@ function HomePage() {
             <h1 className="text-[#F19C1B] font-bold text-9xl pb-8 text-justify">
               RAIL DETECT
             </h1>
-
+          <div className="absolute top-0 -right-10">
+            <img src={camera} alt="camera"></img>
+          </div>
+            
+        </div>
             <div className="absolute top-0 -right-10">
               <img src="img/camera.svg" alt="camera"></img>
             </div>
@@ -41,7 +48,7 @@ function HomePage() {
 
       <div className="w-2/5 relative overflow-hidden">
         <div className="absolute -bottom-20 -right-20">
-          <img src="img/train.png" alt="train"></img>
+          <img src={train}  alt="train"></img>
         </div>
       </div>
     </div>
