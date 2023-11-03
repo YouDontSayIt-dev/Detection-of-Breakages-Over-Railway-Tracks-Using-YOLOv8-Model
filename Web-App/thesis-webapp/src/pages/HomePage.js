@@ -16,7 +16,7 @@ function HomePage() {
             </h1>
           
           <div className="absolute top-0 -right-10">
-            <img src="img/camera.svg"></img>
+            <img src="img/camera.svg" alt="camera"></img>
           </div>
             
         </div>
@@ -43,7 +43,7 @@ function HomePage() {
 
       <div className="w-2/5 relative overflow-hidden">
         <div className="absolute -bottom-20 -right-20">
-          <img src="img/train.png"></img>
+          <img src="img/train.png" alt="train"></img>
         </div>
       </div>
 
@@ -58,7 +58,7 @@ function HomePageButton(props){
     <button className="text-2xl font-bold bg-[#3A623F] hover:bg-[#2c4a30]  border-4 border-[#F19C1B] rounded-full text-white px-2 py-1 shadow-[0_0_69px_3px_rgba(0,255,255,0.25)]">
       <div className="flex flex-row align-middle justify-center space-x-2">
       {props.children}
-      <img src="img/angle-right.svg"></img>
+      <img src="img/angle-right.svg" alt="right angle"></img>
       </div>
     </button>
   )
