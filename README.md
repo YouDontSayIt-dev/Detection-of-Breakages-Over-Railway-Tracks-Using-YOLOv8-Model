@@ -1,4 +1,4 @@
-# Real-Time-Crack-Detection-Model-Over-Railway-Tracks-using-YOLOv8
+# Detection of Breakages Over Railway Tracks Using YOLOv8 Model
 Our application utilizes deep learning to detect breakages over railway tracks
 
 ## Research Background 
