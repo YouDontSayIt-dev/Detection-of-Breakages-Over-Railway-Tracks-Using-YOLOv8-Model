@@ -16,7 +16,7 @@ function Detect() {
             <h1 className="text-custom-text-orange text-7xl font-bold">
               RAIL DETECT
             </h1>
-            <img src={camera} alt="camera" className="w-9 h-9 mb-16 ml-7" />
+            <img src={camera} alt="camera" className="w-10 h-9 mb-16 ml-7" />
           </div>
           {/* BOX 1 BEHIND */}
           <div className="w-[558px] h-[544px] rounded-3xl border-8 border-solid border-custom-border shadow-custom-box-shadow mt-10 mr-12 z-1"></div>
