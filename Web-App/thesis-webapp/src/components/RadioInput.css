@@ -3,7 +3,7 @@
 }
 
 .radio-input {
-  --container_width: 300px;
+  --container_width: 290px;
   position: relative;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@
   z-index: 1;
   font-weight: 600;
   letter-spacing: -1px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .selection {
@@ -50,4 +50,9 @@
 
 .radio-input label:nth-child(2):has(input:checked) ~ .selection {
   transform: translateX(calc(var(--container_width) * 1 / 2));
+}
+
+.label {
+  color: white;
+  font-size: 16px;
 }
