@@ -1,28 +1,25 @@
 import NavBar from "../components/NavBar";
-import camera from "../assets/camera.png";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
+import React, { useState } from "react";
+import ImageDisplay from "../components/ImageDisplay";
 
-function Detect() {
+const Detect = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(URL.createObjectURL(file));
+  };
+
   return (
     <div className="bg-custom-green h-screen font-custom">
       {/* NAV BAR  */}
       <NavBar />
       <div className="flex flex-row items-center justify-center">
         {/* LEFT SIDE  */}
-        <div className="w-[55%] flex flex-col justify-center items-center">
-          <div className="flex justify-center items-center mt-16 mr-28">
-            <h1 className="text-custom-text-orange text-7xl font-bold">
-              RAIL DETECT
-            </h1>
-            <img src={camera} alt="camera" className="w-10 h-9 mb-16 ml-7" />
-          </div>
-          {/* BOX 1 BEHIND */}
-          <div className="w-[558px] h-[544px] rounded-3xl border-8 border-solid border-custom-border shadow-custom-box-shadow mt-10 mr-12 z-1"></div>
-          {/* BOX 2 FRONT */}
-          <div className="bg-custom-box-1 w-[558px] h-[544px] rounded-3xl border-8 border-solid border-custom-border-box-2 shadow-custom-box-shadow-2 mr-1 z-50 absolute top-72"></div>
-        </div>
+        <ImageDisplay selectedImage={selectedImage} />
 
         {/* RIGHT SIDE */}
         <div className="flex flex-col w-[45%] h-96 space-y-10 mt-24">
@@ -30,7 +27,7 @@ function Detect() {
           <RadioInput />
 
           {/* UPLOAD BUTTON */}
-          <UploadButton />
+          <UploadButton onImageChange={handleImageChange} />
 
           {/* INFERENCE BUTTON */}
           <div className="w-[308px] h-[56px] absolute bottom-56">
@@ -49,6 +46,6 @@ function Detect() {
       </div>
     </div>
   );
-}
+};
 
 export default Detect;

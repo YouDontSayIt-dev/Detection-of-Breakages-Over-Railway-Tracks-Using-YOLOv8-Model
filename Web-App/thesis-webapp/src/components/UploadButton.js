@@ -1,6 +1,6 @@
 import React from "react";
 
-const UploadButton = () => {
+const UploadButton = ({ onImageChange }) => {
   return (
     <div className="grid w-full max-w-xs items-center gap-1.5">
       <label htmlFor="picture" style={{ color: "white" }}>
@@ -16,6 +16,7 @@ const UploadButton = () => {
           cursor: "pointer",
           borderRadius: "10px",
         }}
+        onChange={onImageChange} // Call the provided function on change
       />
     </div>
   );
