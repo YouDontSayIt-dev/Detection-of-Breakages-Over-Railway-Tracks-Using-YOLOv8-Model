@@ -17,7 +17,9 @@ axios({
   },
 })
   .then(function (response) {
-    console.log(response.data);
+    const outputData = JSON.stringify(response.data, null, 2);
+    fs.writeFileSync("output.json", outputData);
+    console.log("Output data has been written to output.json");
   })
   .catch(function (error) {
     console.log(error.message);
