@@ -66,7 +66,10 @@ const Detect = () => {
         },
       })
         .then(function (response) {
-          console.log(response.data);
+          // if may response, convert response.data to JSON
+          const bboxData = JSON.stringify(response.data);
+          console.log(bboxData);
+          
         })
         .catch(function (error) {
           console.log(error.message);
