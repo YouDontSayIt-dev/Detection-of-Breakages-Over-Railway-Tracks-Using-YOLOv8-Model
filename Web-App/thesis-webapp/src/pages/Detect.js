@@ -7,8 +7,7 @@ import ImageDisplay from "../components/ImageDisplay";
 import axios from "axios";
 
 const Detect = () => {
-  const [base64Image, setBase64Image] = useState("");
-  const [apiResponse, setApiResponse] = useState(null);
+  const [base64Image, setBase64Image] = useState(null);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -26,18 +25,26 @@ const Detect = () => {
   };
 
   const sendImageToAPI = async () => {
-    try {
-      const response = await axios.post(
-        "https://detect.roboflow.com/railway-crack-detection/10",
-        {
+    if (base64Image) {
+      axios({
+        method: "POST",
+        url: "https://detect.roboflow.com/railway-crack-detection/10",
+        params: {
           api_key: "j4oHBD3msAlUlJvXwsHz",
-          data: base64Image,
-        }
-      );
-      setApiResponse(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error.message);
+        },
+        data: base64Image, // Pass the data URL directly
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error.message);
+        });
+    } else {
+      console.log("No valid image selected.");
     }
   };
 
@@ -59,8 +66,8 @@ const Detect = () => {
 
           {/* INFERENCE BUTTON */}
           <div className="w-[308px] h-[56px] absolute bottom-56">
-            <button onClick={sendImageToAPI}>Perform Inference</button>
-            {/* <InferenceButton onClick={sendImageToAPI} /> */}
+            {/* <button onClick={sendImageToAPI}>Perform Inference</button> */}
+            <InferenceButton onClick={sendImageToAPI} />
           </div>
         </div>
 
