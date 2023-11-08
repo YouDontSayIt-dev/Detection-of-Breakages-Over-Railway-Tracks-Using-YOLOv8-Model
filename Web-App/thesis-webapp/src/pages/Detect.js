@@ -6,9 +6,38 @@ import React, { useState } from "react";
 import ImageDisplay from "../components/ImageDisplay";
 import axios from "axios";
 
+// import { storage } from "../components/firebaseDB";
+
+// Firebase Storage
+// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 const Detect = () => {
   const [base64Image, setBase64Image] = useState(null);
+  
+  // upload to firebase
+//  const [imageUpload, setImageUpload] = useState();
 
+  /*
+  const uploadFile = () => {
+    if (!imageUpload) return;
+  // get the reference to the firebase storage using the selected image name
+  const imageRef = ref(storage, `images/${imageUpload.name}`);
+
+  // upload the file to the firebase storage
+  uploadBytes(imageRef , imageUpload).then((snapshot) => {
+    getDownloadURL(snapshot.ref).then((downloadURL) => {
+      console.log("File available at", downloadURL);
+          });
+      });
+  };
+  */
+  /*
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+  //  setSelectedImage(URL.createObjectURL(file));
+  //   setImageUpload(file);
+  };
+  */
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
@@ -23,7 +52,6 @@ const Detect = () => {
       reader.readAsDataURL(file);
     }
   };
-
   const sendImageToAPI = async () => {
     if (base64Image) {
       axios({
