@@ -49,6 +49,7 @@ const Detect = () => {
       reader.readAsDataURL(file);
     }
   };
+};
   const sendImageToAPI = async () => {
     if (base64Image) {
       axios({
