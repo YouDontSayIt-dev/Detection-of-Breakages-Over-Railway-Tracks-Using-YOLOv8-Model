@@ -4,6 +4,7 @@ import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
 import React, { useState } from "react";
 import ImageDisplay from "../components/ImageDisplay";
+import axios from "axios";
 
 import { storage } from "../components/firebaseDB";
 
@@ -11,8 +12,9 @@ import { storage } from "../components/firebaseDB";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Detect = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-
+  const [base64Image, setBase64Image] = useState(null);
+  
+  // upload to firebase
   const [imageUpload, setImageUpload] = useState();
 
 
@@ -33,6 +35,42 @@ const Detect = () => {
     const file = event.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
     setImageUpload(file);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const base64String = e.target.result;
+        setBase64Image(base64String);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+  const sendImageToAPI = async () => {
+    if (base64Image) {
+      axios({
+        method: "POST",
+        url: "https://detect.roboflow.com/railway-crack-detection/10",
+        params: {
+          api_key: "j4oHBD3msAlUlJvXwsHz",
+        },
+        data: base64Image, // Pass the data URL directly
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error.message);
+        });
+    } else {
+      console.log("No valid image selected.");
+    }
   };
 
   return (
@@ -41,7 +79,7 @@ const Detect = () => {
       <NavBar />
       <div className="flex flex-row items-center justify-center">
         {/* LEFT SIDE  */}
-        <ImageDisplay selectedImage={selectedImage} />
+        <ImageDisplay selectedImage={base64Image} />
 
         {/* RIGHT SIDE */}
         <div className="flex flex-col w-[45%] h-96 space-y-10 mt-24">
@@ -49,13 +87,12 @@ const Detect = () => {
           <RadioInput />
 
           {/* UPLOAD BUTTON */}
-          
-          <UploadButton onImageChange={handleImageChange} />
-         
+          <UploadButton onChange={handleFileChange} />
 
           {/* INFERENCE BUTTON */}
-          <div className="w-[308px] h-[56px] absolute bottom-56" onClick={uploadFile}>
-            <InferenceButton />
+          <div className="w-[308px] h-[56px] absolute bottom-56">
+            {/* <button onClick={sendImageToAPI}>Perform Inference</button> */}
+            <InferenceButton onClick={sendImageToAPI} />
           </div>
         </div>
 
