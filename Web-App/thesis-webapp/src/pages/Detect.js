@@ -5,12 +5,34 @@ import InferenceButton from "../components/InferenceButton";
 import React, { useState } from "react";
 import ImageDisplay from "../components/ImageDisplay";
 
+import { storage } from "../components/firebaseDB";
+
+// Firebase Storage
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 const Detect = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const [imageUpload, setImageUpload] = useState();
+
+
+  const uploadFile = () => {
+    if (!imageUpload) return;
+  // get the reference to the firebase storage using the selected image name
+  const imageRef = ref(storage, `images/${imageUpload.name}`);
+
+  // upload the file to the firebase storage
+  uploadBytes(imageRef , imageUpload).then((snapshot) => {
+    getDownloadURL(snapshot.ref).then((downloadURL) => {
+      console.log("File available at", downloadURL);
+          });
+      });
+  };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
+    setImageUpload(file);
   };
 
   return (
@@ -27,10 +49,12 @@ const Detect = () => {
           <RadioInput />
 
           {/* UPLOAD BUTTON */}
+          
           <UploadButton onImageChange={handleImageChange} />
+         
 
           {/* INFERENCE BUTTON */}
-          <div className="w-[308px] h-[56px] absolute bottom-56">
+          <div className="w-[308px] h-[56px] absolute bottom-56" onClick={uploadFile}>
             <InferenceButton />
           </div>
         </div>
