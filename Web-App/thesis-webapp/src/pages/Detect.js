@@ -2,9 +2,11 @@ import NavBar from "../components/NavBar";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ImageDisplay from "../components/ImageDisplay";
 import axios from "axios";
+import DownloadJSON from "../components/DownloadJSON";
+import DownloadImage from "../components/DownloadImage";
 
 // import { storage } from "../components/firebaseDB";
 
@@ -13,9 +15,9 @@ import axios from "axios";
 
 const Detect = () => {
   const [base64Image, setBase64Image] = useState(null);
-  
+
   // upload to firebase
-//  const [imageUpload, setImageUpload] = useState();
+  //  const [imageUpload, setImageUpload] = useState();
 
   /*
   const uploadFile = () => {
@@ -52,6 +54,7 @@ const Detect = () => {
       reader.readAsDataURL(file);
     }
   };
+
   const sendImageToAPI = async () => {
     if (base64Image) {
       axios({
@@ -60,7 +63,7 @@ const Detect = () => {
         params: {
           api_key: "j4oHBD3msAlUlJvXwsHz",
         },
-        data: base64Image, // Pass the data URL directly
+        data: base64Image,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
@@ -68,8 +71,9 @@ const Detect = () => {
         .then(function (response) {
           // if may response, convert response.data to JSON
           const bboxData = JSON.stringify(response.data);
+          setConsoleData(response.data); // Store console data
+          drawBoundingBoxes(response.data); // Draw bounding boxes
           console.log(bboxData);
-          
         })
         .catch(function (error) {
           console.log(error.message);
@@ -77,6 +81,47 @@ const Detect = () => {
     } else {
       console.log("No valid image selected.");
     }
+  };
+
+  const [consoleData, setConsoleData] = useState([]); // To store console output
+
+  // Reference to the canvas element for drawing bounding boxes
+  const canvasRef = useRef(null);
+
+  const handleConsoleSave = () => {
+    // Create a Blob containing the consoleData as JSON
+    const jsonData = JSON.stringify(consoleData, null, 2);
+    const blob = new Blob([jsonData], { type: "application/json" });
+
+    // Create a temporary link to trigger the download
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "console_output.json";
+    a.click();
+  };
+
+  const drawBoundingBoxes = (data) => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    // Clear any previous drawings
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw bounding boxes based on the data
+    // Implement your drawing logic here
+    // Example: ctx.fillRect(x, y, width, height);
+  };
+
+  const handleImageSave = () => {
+    // Get the canvas data as an image
+    const canvas = canvasRef.current;
+    const image = canvas.toDataURL("image/png");
+
+    // Create a temporary link to trigger the download
+    const a = document.createElement("a");
+    a.href = image;
+    a.download = "image_with_bboxes.png";
+    a.click();
   };
 
   return (
@@ -99,6 +144,22 @@ const Detect = () => {
           <div className="w-[308px] h-[56px] absolute bottom-56">
             {/* <button onClick={sendImageToAPI}>Perform Inference</button> */}
             <InferenceButton onClick={sendImageToAPI} />
+          </div>
+
+          {/* Add buttons for saving the image and console output */}
+          <div
+            style={{
+              color: "white",
+            }}
+          >
+            <p>Download Inference Results:</p>
+            <div style={{ display: "flex" }}>
+              {/* Save Image with Bounding Boxes */}
+              <DownloadImage onClick={handleImageSave} />
+
+              {/* Save Console Output */}
+              <DownloadJSON consoleData={handleConsoleSave} />
+            </div>
           </div>
         </div>
 
