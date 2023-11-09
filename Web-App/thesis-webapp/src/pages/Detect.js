@@ -15,6 +15,7 @@ import DownloadImage from "../components/DownloadImage";
 
 const Detect = () => {
   const [base64Image, setBase64Image] = useState(null);
+  const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
 
   // upload to firebase
   //  const [imageUpload, setImageUpload] = useState();
@@ -40,6 +41,7 @@ const Detect = () => {
   //   setImageUpload(file);
   };
   */
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
@@ -72,7 +74,7 @@ const Detect = () => {
           // if may response, convert response.data to JSON
           const bboxData = JSON.stringify(response.data);
           setConsoleData(response.data); // Store console data
-          drawBoundingBoxes(response.data); // Draw bounding boxes
+          setIsInfering(true); // Enable the inference button
           console.log(bboxData);
         })
         .catch(function (error) {
@@ -100,18 +102,6 @@ const Detect = () => {
     a.click();
   };
 
-  const drawBoundingBoxes = (data) => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-
-    // Clear any previous drawings
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw bounding boxes based on the data
-    // Implement your drawing logic here
-    // Example: ctx.fillRect(x, y, width, height);
-  };
-
   const handleImageSave = () => {
     // Get the canvas data as an image
     const canvas = canvasRef.current;
@@ -130,7 +120,7 @@ const Detect = () => {
       <NavBar />
       <div className="flex flex-row items-center justify-center">
         {/* LEFT SIDE  */}
-        <ImageDisplay selectedImage={base64Image} />
+        <ImageDisplay selectedImage={base64Image} drawLine={isInfering} />
 
         {/* RIGHT SIDE */}
         <div className="flex flex-col w-[45%] h-96 space-y-10 mt-24">
