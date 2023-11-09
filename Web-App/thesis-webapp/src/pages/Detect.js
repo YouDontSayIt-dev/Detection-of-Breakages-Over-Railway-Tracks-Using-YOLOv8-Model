@@ -157,6 +157,8 @@ const Detect = () => {
               {/* Save Image with Bounding Boxes */}
               <DownloadImage onClick={handleImageSave} />
 
+              <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
+
               {/* Save Console Output */}
               <DownloadJSON consoleData={handleConsoleSave} />
             </div>
