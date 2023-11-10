@@ -29,8 +29,8 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData }) => {
 
             const x1 = x - width / 2;
             const y1 = y - height / 2;
-            const x2 = x + width / 2;
-            const y2 = y + height / 2;
+           // const x2 = x + width / 2;
+           // const y2 = y + height / 2;
 
             ctx.beginPath();
             ctx.rect(x1, y1, width, height);
