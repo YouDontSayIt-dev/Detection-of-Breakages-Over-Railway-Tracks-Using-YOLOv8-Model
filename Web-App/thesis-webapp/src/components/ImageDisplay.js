@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import camera from "../assets/camera.png";
 
-const ImageDisplay = ({ selectedImage, drawLine }) => {
+const ImageDisplay = ({ selectedImage, drawLine, bboxData }) => {
   const canvasRef = useRef(null);
   const isDrawing = drawLine;
 
@@ -16,18 +16,30 @@ const ImageDisplay = ({ selectedImage, drawLine }) => {
       img.onload = () => {
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-        // Draw a red line on the canvas if 'isDrawing' is true
-        if (isDrawing) {
+        // Draw bounding boxes if bboxData is available
+        if (bboxData && bboxData.predictions) {
           ctx.strokeStyle = "red";
           ctx.lineWidth = 3;
-          ctx.beginPath();
-          ctx.moveTo(50, 50); // Starting point (x, y)
-          ctx.lineTo(200, 200); // Ending point (x, y)
-          ctx.stroke();
+
+          bboxData.predictions.forEach((prediction) => {
+            const x = prediction.x;
+            const y = prediction.y;
+            const width = prediction.width;
+            const height = prediction.height;
+
+            const x1 = x - width / 2;
+            const y1 = y - height / 2;
+            const x2 = x + width / 2;
+            const y2 = y + height / 2;
+
+            ctx.beginPath();
+            ctx.rect(x1, y1, width, height);
+            ctx.stroke();
+          });
         }
       };
     }
-  }, [selectedImage, isDrawing]);
+  }, [selectedImage, isDrawing, bboxData]);
 
   return (
     <div className="w-[55%] flex flex-col justify-center items-center">

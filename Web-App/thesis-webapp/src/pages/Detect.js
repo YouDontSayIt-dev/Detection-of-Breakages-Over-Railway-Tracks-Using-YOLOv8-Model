@@ -16,6 +16,7 @@ import DownloadImage from "../components/DownloadImage";
 const Detect = () => {
   const [base64Image, setBase64Image] = useState(null);
   const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
+  const [bboxData, setBboxData] = useState(null); // Store the bbox data in a hook
 
   // upload to firebase
   //  const [imageUpload, setImageUpload] = useState();
@@ -73,6 +74,7 @@ const Detect = () => {
         .then(function (response) {
           // if may response, convert response.data to JSON
           const bboxData = JSON.stringify(response.data);
+          setBboxData(response.data); // Store bboxData in state
           setConsoleData(response.data); // Store console data
           setIsInfering(true); // Enable the inference button
           console.log(bboxData);
@@ -120,7 +122,11 @@ const Detect = () => {
       <NavBar />
       <div className="flex flex-row items-center justify-center">
         {/* LEFT SIDE  */}
-        <ImageDisplay selectedImage={base64Image} drawLine={isInfering} />
+        <ImageDisplay
+          selectedImage={base64Image}
+          drawLine={isInfering}
+          bboxData={bboxData}
+        />
 
         {/* RIGHT SIDE */}
         <div className="flex flex-col w-[45%] h-96 space-y-10 mt-24">
