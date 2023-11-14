@@ -1,9 +1,11 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import camera from "../assets/camera.png";
 
 const ImageDisplay = ({ selectedImage, drawLine, bboxData }) => {
   const canvasRef = useRef(null);
   const isDrawing = drawLine;
+  const [canvasWidth, setCanvasWidth] = useState(558); // Default width
+  const [canvasHeight, setCanvasHeight] = useState(544); // Default height
 
   useEffect(() => {
     if (selectedImage && canvasRef.current) {
@@ -14,6 +16,10 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData }) => {
       const img = new Image();
       img.src = selectedImage;
       img.onload = () => {
+        // Update canvas dimensions based on image size
+        setCanvasWidth(img.width);
+        setCanvasHeight(img.height);
+
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
         // Draw bounding boxes if bboxData is available
@@ -29,8 +35,8 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData }) => {
 
             const x1 = x - width / 2;
             const y1 = y - height / 2;
-           // const x2 = x + width / 2;
-           // const y2 = y + height / 2;
+            // const x2 = x + width / 2;
+            // const y2 = y + height / 2;
 
             ctx.beginPath();
             ctx.rect(x1, y1, width, height);
@@ -54,8 +60,8 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData }) => {
       {/* Canvas for drawing */}
       <canvas
         ref={canvasRef}
-        width={558}
-        height={544}
+        width={canvasWidth}
+        height={canvasHeight}
         className="bg-custom-box-1 rounded-3xl border-8 border-solid border-custom-border-box-2 shadow-custom-box-shadow-2 mr-1 z-50 absolute top-72 overflow-hidden"
       />
     </div>
