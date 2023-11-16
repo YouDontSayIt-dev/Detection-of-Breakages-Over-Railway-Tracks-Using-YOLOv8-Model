@@ -1,18 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage";
-import Detect from "./pages/Detect";
+import YOLOV8 from "./pages/YOLOV8";
 
 export default function App() {
   return (
-    <div>
+    <div className="font-Open">
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/" element={<Home />} />
-          <Route path="/detect" element={<Detect />} />
+          <Route path="/yolov8" element={<YOLOV8 />} />
         </Routes>
       </BrowserRouter>
     </div>
-
   );
 }
