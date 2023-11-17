@@ -12,6 +12,7 @@ module.exports = {
     },
     fontFamily: {
       Open: ["Open Sans"],
+      Poppins: ["Poppins"],
     },
     textColor: {
       ebony: "#EBEBEB",
