@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu, ChevronLeft, ChevronDown } from "react-feather";
 import trainIcon from "../assets/trainIcon.png";
 import { NavLink } from "react-router-dom";
+import aboutIcon from "../assets/aboutIcon.png";
 
 const Sidebar = () => {
   const [isCollapsible, setIsCollapsible] = useState(true);
@@ -58,20 +59,28 @@ const Sidebar = () => {
         {renderTitle()}
       </div>
 
-      <div className="text-base text-ebony mt-14">
+      <div className="font-Poppins text-base text-ebony mt-14">
         {!isCollapsible && (
           <>
             <div
-              className="flex flex-grow p-2 space-x-[105px] cursor-pointer"
+              className="flex flex-grow p-2 ml-5 space-x-[110px] cursor-pointer"
               onClick={toggleSubOptions}
             >
               <img
                 src={trainIcon}
                 alt="trainIcon"
-                className="w-[16px] h-[16px] mt-1 mr-4"
+                className="w-[16px] h-[16px] mt-1 mr-2"
               />
               YOLOV8 Model
-              <ChevronDown size={24} color="white" />
+              <ChevronDown
+                size={24}
+                color="white"
+                className={
+                  showSubOptions
+                    ? "rotate-180 transition-all ease-in-out duration-300"
+                    : "transition-all ease-out duration-300"
+                }
+              />
             </div>
             {showSubOptions && (
               <div className="flex flex-col items-start pt-2">
@@ -83,29 +92,37 @@ const Sidebar = () => {
                 </div>
               </div>
             )}
-            <div className="flex cursor-pointer p-2 mb-2 mt-8">
+            <div className="flex ml-5 cursor-pointer p-2 mb-2 mt-8">
               <img
                 src={trainIcon}
                 alt="trainIcon"
-                className="w-[16px] h-[16px] mt-1 mr-4"
+                className="w-[16px] h-[16px] mt-1 mr-2"
               />
-              <NavLink to={"/VGG16"}>VGG16 Model</NavLink>
+              <NavLink to={"/vgg16"}>VGG16 Model</NavLink>
             </div>
-            <div className="flex cursor-pointer p-2 mb-2 mt-8">
+            <div className="flex ml-5 cursor-pointer p-2 mb-2 mt-8">
               <img
                 src={trainIcon}
                 alt="trainIcon"
-                className="w-[16px] h-[16px] mt-1 mr-4"
+                className="w-[16px] h-[16px] mt-1 mr-2"
               />
-              <NavLink to={"/InceptionV3"}>Inceptionv3 Model</NavLink>
+              <NavLink to={"/inceptionv3"}>Inceptionv3 Model</NavLink>
             </div>
-            <div className="flex cursor-pointer p-2 mb-2 mt-8">
+            <div className="flex ml-5 cursor-pointer p-2 mb-2 mt-8">
               <img
                 src={trainIcon}
                 alt="trainIcon"
-                className="w-[16px] h-[16px] mt-1 mr-4"
+                className="w-[16px] h-[16px] mt-1 mr-2"
               />
-              <NavLink to={"/ResNet50"}>ResNet50 Model</NavLink>
+              <NavLink to={"/resnet50"}>ResNet50 Model</NavLink>
+            </div>
+            <div className="flex ml-5 cursor-pointer p-2 mb-2 mt-8">
+              <img
+                src={aboutIcon}
+                alt="aboutIcon"
+                className="w-[16px] h-[16px] mt-1 mr-2"
+              />
+              <NavLink to={"/aboutus"}>About Us</NavLink>
             </div>
           </>
         )}
