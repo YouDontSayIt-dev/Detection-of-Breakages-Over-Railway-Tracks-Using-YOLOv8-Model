@@ -3,6 +3,7 @@ import { Menu, ChevronLeft, ChevronDown } from "react-feather";
 import trainIcon from "../assets/trainIcon.png";
 import { NavLink } from "react-router-dom";
 import aboutIcon from "../assets/aboutIcon.png";
+import homeIcon from "../assets/homeIcon.png";
 
 const Sidebar = () => {
   const [isCollapsible, setIsCollapsible] = useState(true);
@@ -51,7 +52,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`flex flex-col h-screen bg-customSidebarColor text-white rounded-tr-3xl rounded-br-3xl ${
+      className={`flex flex-col h-full  bg-customSidebarColor text-white rounded-tr-3xl rounded-br-3xl ${
         isCollapsible ? "w-0" : "w-[335px]"
       } transition-all duration-500`}
     >
@@ -85,10 +86,10 @@ const Sidebar = () => {
             {showSubOptions && (
               <div className="flex flex-col items-start pt-2">
                 <div className="w-full cursor-pointer p-2 pl-14 mb-2 hover:bg-customSubOption hover:text-active">
-                  Inference Mode
+                  <NavLink to={"/yolov8/inference"}>Inference Mode</NavLink>
                 </div>
                 <div className="w-full cursor-pointer p-2 pl-14 mb-2 hover:bg-customSubOption hover:text-active">
-                  Real-time Mode
+                  <NavLink to={"/yolov8/realtime"}>Real-Time Mode</NavLink>
                 </div>
               </div>
             )}
@@ -123,6 +124,15 @@ const Sidebar = () => {
                 className="w-[16px] h-[16px] mt-1 mr-2"
               />
               <NavLink to={"/aboutus"}>About Us</NavLink>
+            </div>
+            <div className="flex h-[310px] rounded-br-3xl items-end justify-end ">
+              <NavLink to={"/"}>
+                <img
+                  src={homeIcon}
+                  alt="home"
+                  className="w-[32px] h-[32px] justify-end mr-6"
+                />
+              </NavLink>
             </div>
           </>
         )}

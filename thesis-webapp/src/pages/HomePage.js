@@ -38,7 +38,7 @@ function HomePage() {
           </div>
         </div>
         <HomePageButton>
-          <Link to="/yolov8">Get Started</Link>
+          <Link to="/yolov8/inference">Get Started</Link>
         </HomePageButton>
       </div>
 
