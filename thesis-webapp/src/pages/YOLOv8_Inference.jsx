@@ -45,6 +45,8 @@ const Yolov8Inference = () => {
             />
           </svg>
         </div>
+
+        {/* CONTAINER FOR BUTTONS */}
         <div className="flex h-[65%] justify-between px-[359px] items-center">
           <UploadButton />
           <RadioInput />
@@ -52,7 +54,7 @@ const Yolov8Inference = () => {
         </div>
       </div>
       <div className="flex flex-row w-screen h-screen bg-teal-700 overflow-x-hidden">
-        {/* CONTAINER FOR YOLOv8 INFERENCE CONTAINER  */}
+        {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
       </div>
     </div>
   );
