@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import aboutIcon from "../assets/aboutIcon.png";
 import homeIcon from "../assets/homeIcon.png";
 
-const Sidebar = () => {
+const Sidebar = ({ activePage }) => {
   const [isCollapsible, setIsCollapsible] = useState(true);
   const [showSubOptions, setShowSubOptions] = useState(false);
 
@@ -18,6 +18,7 @@ const Sidebar = () => {
     setShowSubOptions(!showSubOptions);
   };
 
+  // FUNCTION FOR RENDERING THE TITLE OF THE SIDEBAR AND THE RIGHT ICON (MENU OR ARROW)
   const renderTitle = () => {
     if (isCollapsible) {
       return (
@@ -63,6 +64,7 @@ const Sidebar = () => {
       <div className="font-Poppins text-base text-ebony mt-14">
         {!isCollapsible && (
           <>
+            {/* LINK FOR YOLOV8 MODEL */}
             <div
               className="flex flex-grow p-2 ml-5 space-x-[110px] cursor-pointer"
               onClick={toggleSubOptions}
@@ -83,6 +85,7 @@ const Sidebar = () => {
                 }
               />
             </div>
+            {/* SUB OPTIONS FOR YOLOV8  */}
             {showSubOptions && (
               <div className="flex flex-col items-start pt-2">
                 <div className="w-full cursor-pointer p-2 pl-14 mb-2 hover:bg-customSubOption hover:text-active">
@@ -93,6 +96,8 @@ const Sidebar = () => {
                 </div>
               </div>
             )}
+
+            {/* LINK FOR VGG16 MODEL */}
             <div className="flex ml-5 cursor-pointer p-2 mb-2 mt-8">
               <img
                 src={trainIcon}
@@ -101,6 +106,8 @@ const Sidebar = () => {
               />
               <NavLink to={"/vgg16"}>VGG16 Model</NavLink>
             </div>
+
+            {/* LINK FOR INCEPTIONV3 MODEL */}
             <div className="flex ml-5 cursor-pointer p-2 mb-2 mt-8">
               <img
                 src={trainIcon}
@@ -109,6 +116,8 @@ const Sidebar = () => {
               />
               <NavLink to={"/inceptionv3"}>Inceptionv3 Model</NavLink>
             </div>
+
+            {/* LINK FOR RESNET50 MODEL */}
             <div className="flex ml-5 cursor-pointer p-2 mb-2 mt-8">
               <img
                 src={trainIcon}
@@ -117,6 +126,8 @@ const Sidebar = () => {
               />
               <NavLink to={"/resnet50"}>ResNet50 Model</NavLink>
             </div>
+
+            {/* LINK FOR ABOUT US */}
             <div className="flex ml-5 cursor-pointer p-2 mb-2 mt-8">
               <img
                 src={aboutIcon}
@@ -125,6 +136,8 @@ const Sidebar = () => {
               />
               <NavLink to={"/aboutus"}>About Us</NavLink>
             </div>
+
+            {/* LINK FOR HOME */}
             <div className="flex h-[310px] rounded-br-3xl items-end justify-end ">
               <NavLink to={"/"}>
                 <img

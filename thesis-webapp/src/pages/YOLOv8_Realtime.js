@@ -1,4 +1,4 @@
-const yolov8RealTime = () => {
+const Yolov8RealTime = () => {
   return (
     <div>
       <h1>YOLOv8 Realtime</h1>
@@ -6,4 +6,4 @@ const yolov8RealTime = () => {
   );
 };
 
-export default yolov8RealTime;
+export default Yolov8RealTime;

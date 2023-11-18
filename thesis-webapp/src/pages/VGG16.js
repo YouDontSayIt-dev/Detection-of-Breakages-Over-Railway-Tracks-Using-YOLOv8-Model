@@ -1,4 +1,4 @@
-const vgg16 = () => {
+const Vgg16 = () => {
   return (
     <div>
       <h1>VGG16</h1>
@@ -6,4 +6,4 @@ const vgg16 = () => {
   );
 };
 
-export default vgg16;
+export default Vgg16;

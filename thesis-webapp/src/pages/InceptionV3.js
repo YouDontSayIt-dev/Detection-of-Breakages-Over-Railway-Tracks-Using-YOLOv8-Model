@@ -1,4 +1,4 @@
-const inceptionv3 = () => {
+const Inceptionv3 = () => {
   return (
     <div>
       <h1>InceptionV3</h1>
@@ -6,4 +6,4 @@ const inceptionv3 = () => {
   );
 };
 
-export default inceptionv3;
+export default Inceptionv3;

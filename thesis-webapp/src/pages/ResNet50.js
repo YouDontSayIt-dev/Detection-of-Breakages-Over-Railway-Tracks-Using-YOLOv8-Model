@@ -1,4 +1,4 @@
-const resnet50 = () => {
+const Resnet50 = () => {
   return (
     <div>
       <h1>ResNet50</h1>
@@ -6,4 +6,4 @@ const resnet50 = () => {
   );
 };
 
-export default resnet50;
+export default Resnet50;
