@@ -2,7 +2,7 @@ import React from "react";
 
 const UploadButton = ({ onChange }) => {
   return (
-    <div className="grid w-full max-w-xs items-center gap-1.5">
+    <div className="flex flex-col">
       <label htmlFor="picture" style={{ color: "white" }}>
         Upload a file:
       </label>
@@ -10,13 +10,7 @@ const UploadButton = ({ onChange }) => {
         id="picture"
         type="file"
         accept="image/*"
-        className="flex h-13 w-72 rounded-md px-3 py-3 text-white text-medium file:border-1 file:bg-transparent file:text-white file:text-medium file:font-medium"
-        style={{
-          backgroundColor: "#3A623F",
-          color: "white",
-          cursor: "pointer",
-          borderRadius: "10px",
-        }}
+        className="flex h-[56px] w-[326px] mt-2 bg-customBackground border rounded-customBtn border-customBtn shadow-customShadow rounded-2xl text-base text-ebony file:h-full file:border file:border-customFile file:rounded-customFile  file:bg-customBackground file:border-l-0 file:border-t-0 file:border-r-2 file:text-ebony file:font-bold"
         onChange={onChange} // Call the provided function on change
       />
     </div>

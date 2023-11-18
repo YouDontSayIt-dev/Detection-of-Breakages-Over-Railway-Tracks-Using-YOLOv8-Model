@@ -18,11 +18,20 @@ module.exports = {
       ebony: "#EBEBEB",
       active: "#228A88",
     },
-    borderColor: {},
-    boxShadow: {},
-    fill: {},
+    borderRadius: {
+      customBtn: "20px 20px 20px 20px",
+      customFile: "20px 0px 0px 20px",
+    },
+    // Customize border color
+    borderColor: {
+      customBtn: "#228A88",
+      customFile: "#228A88",
+    },
     textShadow: {
       md: "0px 0px 20px #228A88",
+    },
+    boxShadow: {
+      customShadow: "0px 8px 12.3px 0px #228A88",
     },
   },
   plugins: [],
