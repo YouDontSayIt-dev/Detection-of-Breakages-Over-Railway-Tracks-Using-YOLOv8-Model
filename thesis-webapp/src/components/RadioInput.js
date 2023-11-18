@@ -17,8 +17,8 @@ class RadioInput extends Component {
 
   render() {
     return (
-      <div className="w-[308px] h-[56px] font-custom">
-        <label className="label">Choose mode type:</label>
+      <div className="w-[254px] h-[56px] mb-8">
+        <label className="text-ebony">Step 2: Choose Inference Result</label>
         <div className="radio-input">
           <label>
             <input

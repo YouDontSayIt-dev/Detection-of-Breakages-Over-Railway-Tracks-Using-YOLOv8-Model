@@ -4,7 +4,7 @@ const UploadButton = ({ onChange }) => {
   return (
     <div className="flex flex-col">
       <label htmlFor="picture" style={{ color: "white" }}>
-        Upload a file:
+        Step 1: Upload a file:
       </label>
       <input
         id="picture"

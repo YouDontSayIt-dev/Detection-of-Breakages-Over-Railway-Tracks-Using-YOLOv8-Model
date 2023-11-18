@@ -1,23 +1,27 @@
 .radio-input input {
   display: none;
+  
 }
 
 .radio-input {
-  --container_width: 290px;
+  --container_width: 254px;
   position: relative;
+  margin-top: 8px;
   display: flex;
   align-items: center;
-  border-radius: 10px;
-  background-color: #3a623f;
+  border-radius: 20px;
+  background-color: #071017;
   color: white;
   width: var(--container_width);
   overflow: hidden;
   border: 1px solid rgba(53, 52, 52, 0.226);
+  box-shadow: 0px 8px 12.3px 0px #228A88;
+  border: 1px solid #228A88;
 }
 
 .radio-input label {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -44,15 +48,10 @@
 }
 
 .radio-input label:has(input:checked) ~ .selection {
-  background-color: #F19C1B;
+  background-color: #228A88;
   display: inline-block;
 }
 
 .radio-input label:nth-child(2):has(input:checked) ~ .selection {
   transform: translateX(calc(var(--container_width) * 1 / 2));
-}
-
-.label {
-  color: white;
-  font-size: 16px;
 }
