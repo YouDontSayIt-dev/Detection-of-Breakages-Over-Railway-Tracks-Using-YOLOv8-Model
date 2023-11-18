@@ -2,12 +2,16 @@ import React from "react";
 
 const InferenceButton = ({ onClick }) => {
   return (
-    <button
-      className="w-[290px] h-[64px] bg-red-500 text-2xl font-custom text-custom-white px-8 py-2 rounded-md shadow-custom-box-shadow-inference-btn transition active:translate-y-1"
+    <div className="flex flex-col">
+      <h1 className="text-ebony mb-2">Step 3: Run the system</h1>
+      <button
+      className="w-[215px] h-[56px] bg-customBackground border rounded-customBtn border-customBtn shadow-customShadow rounded-2xl text-base text-ebony transition active:translate-y-1"
       onClick={onClick}
-    >
+      >
       Run Inference
-    </button>
+      </button>
+    </div>
+    
   );
 };
 

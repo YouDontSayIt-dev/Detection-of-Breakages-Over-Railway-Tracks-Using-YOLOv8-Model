@@ -3,7 +3,7 @@ import React from "react";
 const UploadButton = ({ onChange }) => {
   return (
     <div className="flex flex-col">
-      <label htmlFor="picture" style={{ color: "white" }}>
+      <label htmlFor="picture" className="text-ebony">
         Step 1: Upload a file:
       </label>
       <input
