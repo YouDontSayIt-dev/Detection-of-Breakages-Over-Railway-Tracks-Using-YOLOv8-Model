@@ -1,12 +1,63 @@
 import Sidebar from "../components/Sidebar";
-import React from "react";
+import React, { useState} from "react";
 import { useLocation } from "react-router-dom";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
+import ImageDisplay from "../components/ImageDisplay";
+import axios from "axios";
+
 
 const Yolov8Inference = () => {
   const location = useLocation(); //gets the current path location
+
+  const [base64Image, setBase64Image] = useState(null);
+  const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
+  const [bboxData, setBboxData] = useState(null); // Store the bbox data in a hook
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const base64String = e.target.result;
+        setBase64Image(base64String);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const sendImageToAPI = async () => {
+    if (base64Image) {
+      axios({
+        method: "POST",
+        url: "https://detect.roboflow.com/railway-crack-detection/10",
+        params: {
+          api_key: "j4oHBD3msAlUlJvXwsHz",
+        },
+        data: base64Image,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+        .then(function (response) {
+          // if may response, convert response.data to JSON
+          const bboxData = JSON.stringify(response.data);
+          setBboxData(response.data); // Store bboxData in state
+          setIsInfering(true); // Enable the inference button
+          console.log(bboxData);
+        })
+        .catch(function (error) {
+          console.log(error.message);
+        });
+    } else {
+      console.log("No valid image selected.");
+    }
+  };
+
 
   return (
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
@@ -48,13 +99,18 @@ const Yolov8Inference = () => {
 
         {/* CONTAINER FOR BUTTONS */}
         <div className="flex h-[65%] justify-between px-[359px] items-center">
-          <UploadButton />
+          <UploadButton onChange={handleFileChange}/>
           <RadioInput />
-          <InferenceButton />
+          <InferenceButton onClick={sendImageToAPI}/>
         </div>
       </div>
-      <div className="flex flex-row w-screen h-screen bg-teal-700 overflow-x-hidden">
+      <div className="flex w-screen h-screen overflow-x-hidden">
         {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
+        <ImageDisplay
+          selectedImage={base64Image}
+          drawLine={isInfering}
+          bboxData={bboxData}
+        />
       </div>
     </div>
   );
