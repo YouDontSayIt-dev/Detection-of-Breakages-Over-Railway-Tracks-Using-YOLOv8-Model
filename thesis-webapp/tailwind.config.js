@@ -22,6 +22,7 @@ module.exports = {
       customBtn: "20px 20px 20px 20px",
       customFile: "20px 0px 0px 20px",
       customImageDisplay: "24px",
+      customCanvasDisplay: "15px",
     },
     // Customize border color
     borderColor: {

@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import camera from "../assets/camera.png";
 
 const ImageDisplay = ({ selectedImage, drawLine, bboxData }) => {
   const canvasRef = useRef(null);
@@ -50,14 +49,18 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData }) => {
   }, [selectedImage, isDrawing, bboxData]);
 
   return (
-    <div className="w-[1202px] h-[598px] bg-customBackground border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay mx-auto">
+    <div className="w-[1202px] h-[598px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
+      <div className="flex w-full h-[10%] justify-between items-center p-6 text-ebony font-bold text-2xl">
+        <h1>Result:</h1>
+        <button>Copy Code</button>
+      </div>
       {/* Canvas for drawing */}
-      {/* <canvas
-        ref={canvasRef}
+      <canvas ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
-        className="bg-red-500 rounded-3xl"
-      /> */}
+        className="w-full h-[90%] rounded-b-customCanvasDisplay"      
+      />
+        
     </div>
   );
 };

@@ -29,7 +29,7 @@ class RadioInput extends Component {
               checked={this.state.selectedValue === "value-1"}
               onChange={this.handleRadioChange}
             />
-            <span>Inference</span>
+            <span>Image</span>
           </label>
           <label>
             <input
@@ -40,7 +40,7 @@ class RadioInput extends Component {
               checked={this.state.selectedValue === "value-2"}
               onChange={this.handleRadioChange}
             />
-            <span>Real-time</span>
+            <span>JSON</span>
           </label>
           <span className="selection"></span>
         </div>
