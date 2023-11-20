@@ -70,10 +70,12 @@ const Yolov8Inference = () => {
 
   return (
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
+      {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
       <div className="w-full h-[320px] overflow-x-hidden">
         <div className="flex h-[30%] ml-[125px] items-center justify-between p-[56px]">
           {/* CONTAINER FOR TOP ITEMS  */}
+          {/* LEFT ITEMS */}
           <div className="flex">
             <h1 className="text-4xl font-bold text-ebony">
               YOLOv8 Rail Detect
@@ -92,6 +94,8 @@ const Yolov8Inference = () => {
               />
             </svg>
           </div>
+
+          {/* RIGHT ITEMS */}
           <div className="flex">
             <div onMouseEnter={handleIconHover}>
               <svg
