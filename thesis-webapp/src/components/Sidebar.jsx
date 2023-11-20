@@ -30,7 +30,7 @@ const Sidebar = ({ activePage }) => {
       );
     } else {
       return (
-        <div className="flex">
+        <div className="flex rounded-tr-customSidebar">
           <div className="w-[80%] text-ebony text-justify text-shadow-md text-3xl font-bold mt-9 ml-6">
             RAIL DETECT
           </div>
@@ -52,12 +52,12 @@ const Sidebar = ({ activePage }) => {
   return (
     <div className="fixed h-full">
       <div
-        className={`flex flex-col h-full  bg-customSidebarColor text-white rounded-tr-3xl rounded-br-3xl z-50 ${
+        className={`flex flex-col h-full  bg-customSidebarColor rounded-br-customSidebar rounded-tr-customSidebar text-white z-50 ${
           isCollapsible ? "w-0" : "w-[335px]"
-        } transition-all duration-500`}
+        } transition-all duration-500 ease-out`}
       >
         {/* FOR RENDERING THE TITLE COMPONENT */}
-        <div className="bg-customSidebarColor rounded-tr-3xl">
+        <div className="rounded-tr-customSidebar">
           {renderTitle()}
         </div>
 
