@@ -23,6 +23,8 @@ module.exports = {
       customFile: "20px 0px 0px 20px",
       customImageDisplay: "24px",
       customCanvasDisplay: "15px",
+      customPopUp: "16px 0px 16px 16px",
+      customSidebar: "56px",
     },
     // Customize border color
     borderColor: {
