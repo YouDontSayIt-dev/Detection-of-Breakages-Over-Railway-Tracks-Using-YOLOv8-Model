@@ -111,8 +111,26 @@ const Yolov8Inference = () => {
 
             {/* MODAL POPUP */}
             {isModalOpen && (
-              <div className="absolute top-[84px] right-20 z-50 w-[531px] h-[515px] bg-customSidebarColor rounded-customPopUp p-8" onMouseLeave={handleModalClose}>
-                <h1 className="bg-black w-full h-[10%] text-ebony font-bold text-2xl">What is Inferencing?</h1>
+              <div
+                className="absolute top-[84px] right-20 z-50 w-[531px] h-[515px] bg-customSidebarColor rounded-customPopUp p-8 text-ebony"
+                onMouseLeave={handleModalClose}
+              >
+                <h1 className="w-full h-[10%] text-2xl font-semibold">
+                  What is Inferencing?
+                </h1>
+                <p className="w-full h-[80%] py-4 text-2xl">
+                  Inferencing refers to the process of using a trained model to
+                  make predictions or inferences on new, unseen data. Object
+                  detection involves identifying and locating objects within an
+                  image or a video frame. The trained model, often based on
+                  machine learning or deep learning techniques, has learned to
+                  recognize patterns and features that distinguish different
+                  objects.
+                </p>
+                <div className="flex items-center justify-end w-full text-2xl">
+                  <h1>Model's Accuracy: </h1>
+                  <h1 className="font-semibold text-4xl mb-4 ml-4">92%</h1>
+                </div>
               </div>
             )}
           </div>
