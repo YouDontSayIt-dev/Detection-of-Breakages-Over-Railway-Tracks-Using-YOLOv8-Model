@@ -8,6 +8,13 @@ import ImageDisplay from "../components/ImageDisplay";
 import axios from "axios";
 
 const Yolov8Inference = () => {
+  // FOR RADIO BTN VALUE 
+  const [outputOption, setOutputOption] = useState(null);
+
+  const handleRadioChange = (value) => {
+    setOutputOption(value);
+  };
+
   // FOR MODAL POPUP
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -143,7 +150,7 @@ const Yolov8Inference = () => {
         {/* CONTAINER FOR BUTTONS */}
         <div className="flex h-[65%] justify-between px-[359px] items-center z-10">
           <UploadButton onChange={handleFileChange} />
-          <RadioInput />
+          <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
           <InferenceButton onClick={sendImageToAPI} />
         </div>
       </div>
