@@ -1,7 +1,7 @@
 import Sidebar from "../components/Sidebar";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import ImageDisplay from "../components/ImageDisplay";
+import ImageDisplay from "../components/ImageDisplayOther";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
@@ -30,6 +30,7 @@ const Vgg16 = () => {
   };
 
   const [upload, setUpload] = useState(null);
+  const [imgData, setimgData] = useState(null); // Store the bbox data in a hook
 
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
@@ -52,6 +53,7 @@ const Vgg16 = () => {
       });
 
       const data = await response.json();
+      setimgData(data);
       const str = JSON.stringify(data);
       console.log(str);
     }catch (error) {
@@ -139,6 +141,7 @@ const Vgg16 = () => {
         {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
         <ImageDisplay
           selectedImage={upload}
+          imgData={imgData}
           radioBtnValue={outputOption}
         />
         
