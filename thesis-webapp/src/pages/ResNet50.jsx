@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
-import ImageDisplay from "../components/ImageDisplay";
+import ImageDisplay from "../components/ImageDisplayYOLO";
 
 const ResNet50 = () => {
   const location = useLocation();
