@@ -14,7 +14,6 @@ class RadioInput extends Component {
       selectedValue: event.target.value,
     });
     this.props.onRadioChange(event.target.value); // Pass the selected value to the parent component
-    console.log(event.target.value);
   };
 
   render() {

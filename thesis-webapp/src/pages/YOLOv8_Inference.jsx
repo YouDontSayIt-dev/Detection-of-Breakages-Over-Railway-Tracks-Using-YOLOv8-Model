@@ -9,11 +9,13 @@ import axios from "axios";
 
 const Yolov8Inference = () => {
   // FOR RADIO BTN VALUE 
-  const [outputOption, setOutputOption] = useState(null);
+  const [outputOption, setOutputOption] = useState("image");
 
   const handleRadioChange = (value) => {
     setOutputOption(value);
   };
+
+  console.log("Current radio button value:", outputOption);
 
   // FOR MODAL POPUP
   const [isModalOpen, setModalOpen] = useState(false);
@@ -160,6 +162,7 @@ const Yolov8Inference = () => {
           selectedImage={base64Image}
           drawLine={isInfering}
           bboxData={bboxData}
+          radioBtnValue={outputOption}
         />
       </div>
     </div>
