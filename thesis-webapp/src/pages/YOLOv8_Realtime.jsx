@@ -89,11 +89,15 @@ const Yolov8Realtime = () => {
           </div>
         </div>
       </div>
-      <div className="flex w-screen h-full justify-center mb-2 overflow-x-hidden z-10">
+      <div className="flex w-fit h-fit justify-center mb-2 overflow-x-hidden z-10 mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
         {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
-        <div className="flex flex-col w-[1186px] h-fit mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
+        {/* <div className="flex flex-col w-[1202px] h-[820px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay z-30">
           <RealtimeDisplay modelName="railway-crack-detection" modelVersion="10"/>
-        </div>
+        </div> */}
+        <RealtimeDisplay
+          modelName="railway-crack-detection"
+          modelVersion="10"
+        />
       </div>
     </div>
   );

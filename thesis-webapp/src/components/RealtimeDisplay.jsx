@@ -151,7 +151,8 @@ const RealtimeDisplay = (props) => {
       <Webcam
         ref={webcamRef}
         muted={true}
-        className="rounded-customCanvasDisplay  text-center z-10"
+        width={640}
+        className="rounded-customCanvasDisplay text-center z-0"
       />
       <canvas
         ref={canvasRef}
