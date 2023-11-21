@@ -6,20 +6,21 @@ import train from "../assets/train.png";
 
 function HomePage() {
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen font-Open bg-customBackground relative">
+    <div className="flex  lg:flex-row min-h-screen font-Open bg-customBackground relative">
       <div className="w-full lg:w-3/5 px-3 lg:px-28 pt-[20px] lg:pt-[100px]">
         <div>
-          <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left lg:text-[56px] lg:pb-4">
+          <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-4xl lg:text-[56px] md:pb-4">
             WELCOME TO
           </h2>
-          <div className="relative">
-            <h1 className="text-[#EBEBEB] drop-shadow-2xl font-bold text-[40px] lg:text-9xl pb-8 lg:pb-4 text-center lg:text-justify  lg:whitespace-nowrap tracking-widest">
+          <div className="w-full flex justify-center items-center">
+          <div className="w-[300px] md:w-full">
+            <h1 className="text-[#EBEBEB] relative drop-shadow-2xl font-bold text-[40px] md:text-8xl lg:text-9xl pb-8 lg:pb-4 text-center lg:text-justify  lg:whitespace-nowrap tracking-widest">
               RAIL DETECT
-            </h1>
-
-            <div className="absolute -top-5 right-0">
-              <img src={camera} alt="camera" className="lg:w-[36px] lg:h-[32px]"></img>
+              <div className="absolute top-0 md:-top-5 right-0">
+              <img src={camera} alt="camera" className="md:w-[36px] md:h-[32px]"></img>
             </div>
+            </h1>
+          </div>
           </div>
 
           <div className="block lg:hidden w-full pb-4">
@@ -32,7 +33,7 @@ function HomePage() {
             <p className="text-[#228A88] font-bold block pb-4 tracking-widest lg:whitespace-nowrap">
               Detection of Breakages Over Railway Tracks Using YOLOv8 Model
             </p>
-            <p className="text-[#EBEBEB] text-[8px] lg:text-2xl leading-normal pb-8 lg:pb-16">
+            <p className="text-[#EBEBEB] text-sm lg:text-2xl leading-normal pb-8 lg:pb-16">
               Our website offers a user-friendly platform where you can easily
               detect and report railway breakages by simply uploading an image.
               Using a cutting-edge model-based technology, we can efficiently
