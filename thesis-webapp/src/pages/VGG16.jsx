@@ -5,8 +5,18 @@ import ImageDisplay from "../components/ImageDisplay";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
+import axios from "axios";
 
 const Vgg16 = () => {
+  // FOR RADIO BTN VALUE 
+  const [outputOption, setOutputOption] = useState("image");
+
+  const handleRadioChange = (value) => {
+    setOutputOption(value);
+  };
+
+  console.log("Current radio button value:", outputOption);
+
   const location = useLocation();
 
   // FOR MODAL POPUP
@@ -20,6 +30,43 @@ const Vgg16 = () => {
     setModalOpen(false);
   };
 
+  const [upload, setUpload] = useState(null);
+  const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
+  const [bboxData, setBboxData] = useState(null); // Store the bbox data in a hook
+
+  const handleFileChange = (event) => {
+    if (event.target.files[0]) {
+      const file = event.target.files[0];
+      setUpload(file);
+    }
+  };
+
+  const fileUpload = async (upload) => {
+    if (!upload){
+      console.log("No file selected.");
+      return;
+    }
+};
+  const sendImageToAPI = async () => {
+    const url = "https://cors-anywhere.herokuapp.com/https://vgg16-crack-detection-app-2ecca2e18152.herokuapp.com/predict";
+
+    try {
+      const formData = new FormData();
+      formData.append("file", upload);
+      console.log(upload);
+
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      const str = JSON.stringify(data);
+      console.log(str);
+    }catch (error) {
+      console.log("Error:", error);
+    }
+  };
   return (
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
@@ -92,14 +139,19 @@ const Vgg16 = () => {
 
         {/* CONTAINER FOR BUTTONS */}
         <div className="flex h-[65%] justify-between px-[359px] items-center z-10">
-          <UploadButton />
-          <RadioInput />
-          <InferenceButton />
+          <UploadButton onChange={handleFileChange} />
+          <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
+          <InferenceButton onClick={sendImageToAPI} />
         </div>
       </div>
       <div className="flex w-screen h-fit mb-2 overflow-x-hidden z-0">
         {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
-        <ImageDisplay />
+        <ImageDisplay
+          selectedImage={upload}
+          radioBtnValue={outputOption}
+        />
+        
+
       </div>
     </div>
   );
