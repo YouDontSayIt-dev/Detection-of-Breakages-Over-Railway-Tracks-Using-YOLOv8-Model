@@ -5,7 +5,7 @@ class RadioInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedValue: "value-1", // Default selected value
+      selectedValue: "image", // Default selected value
     };
   }
 
@@ -13,6 +13,7 @@ class RadioInput extends Component {
     this.setState({
       selectedValue: event.target.value,
     });
+    this.props.onRadioChange(event.target.value); // Pass the selected value to the parent component
   };
 
   render() {
@@ -24,9 +25,9 @@ class RadioInput extends Component {
             <input
               type="radio"
               name="value-radio"
-              id="value-1"
-              value="value-1"
-              checked={this.state.selectedValue === "value-1"}
+              id="image"
+              value="image"
+              checked={this.state.selectedValue === "image"}
               onChange={this.handleRadioChange}
             />
             <span>Image</span>
@@ -35,9 +36,9 @@ class RadioInput extends Component {
             <input
               type="radio"
               name="value-radio"
-              id="value-2"
-              value="value-2"
-              checked={this.state.selectedValue === "value-2"}
+              id="JSON"
+              value="JSON"
+              checked={this.state.selectedValue === "JSON"}
               onChange={this.handleRadioChange}
             />
             <span>JSON</span>
