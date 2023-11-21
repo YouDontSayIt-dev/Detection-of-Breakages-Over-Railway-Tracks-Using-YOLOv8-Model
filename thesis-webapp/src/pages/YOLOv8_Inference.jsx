@@ -156,7 +156,7 @@ const Yolov8Inference = () => {
           <InferenceButton onClick={sendImageToAPI} />
         </div>
       </div>
-      <div className="flex w-screen h-fit mb-2 overflow-x-hidden z-10">
+      <div className="flex w-screen h-fit mb-2 overflow-x-hidden z-0">
         {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
         <ImageDisplay
           selectedImage={base64Image}

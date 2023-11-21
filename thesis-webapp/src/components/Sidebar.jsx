@@ -50,7 +50,7 @@ const Sidebar = ({ activePage }) => {
   };
 
   return (
-    <div className="fixed h-full">
+    <div className="fixed h-full z-50">
       <div
         className={`flex flex-col h-full  bg-customSidebarColor rounded-br-customSidebar rounded-tr-customSidebar text-white z-50 ${
           isCollapsible ? "w-0" : "w-[335px]"
