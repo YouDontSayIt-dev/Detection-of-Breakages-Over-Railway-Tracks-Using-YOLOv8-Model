@@ -12,6 +12,7 @@ const RealtimeDisplay = (props) => {
   // var model;
 
   const startInfer = () => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     inferRunning = true;
     window.roboflow
       .auth({
