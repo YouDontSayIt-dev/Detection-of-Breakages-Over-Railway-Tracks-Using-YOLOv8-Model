@@ -5,7 +5,6 @@ import ImageDisplay from "../components/ImageDisplay";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
-import axios from "axios";
 
 const Vgg16 = () => {
   // FOR RADIO BTN VALUE 
@@ -31,8 +30,6 @@ const Vgg16 = () => {
   };
 
   const [upload, setUpload] = useState(null);
-  const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
-  const [bboxData, setBboxData] = useState(null); // Store the bbox data in a hook
 
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
@@ -41,12 +38,6 @@ const Vgg16 = () => {
     }
   };
 
-  const fileUpload = async (upload) => {
-    if (!upload){
-      console.log("No file selected.");
-      return;
-    }
-};
   const sendImageToAPI = async () => {
     const url = "https://cors-anywhere.herokuapp.com/https://vgg16-crack-detection-app-2ecca2e18152.herokuapp.com/predict";
 
