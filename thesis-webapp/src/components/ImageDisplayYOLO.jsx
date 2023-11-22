@@ -45,13 +45,30 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue }) => {
             const y = prediction.y;
             const width = prediction.width;
             const height = prediction.height;
+            const className = prediction.class;
+            const confidence = prediction.confidence;
 
             const x1 = x - width / 2;
             const y1 = y - height / 2;
 
-            ctx.beginPath();
-            ctx.rect(x1, y1, width, height);
-            ctx.stroke();
+            // Measure text width for responsive box size
+            const text = `${className} (${(confidence * 100).toFixed(0)}%)`;
+            const textWidth = ctx.measureText(text).width;
+            const boxPadding = 4; // Adjust padding as needed
+
+            // Draw filled box behind text for better visibility
+            ctx.fillStyle = "rgba(0, 0, 0, 0.7)"; // Black with 70% opacity
+            ctx.fillRect(x1, y1 - 20, textWidth + boxPadding * 2, 20 + boxPadding * 2);
+
+            // Draw bounding box border
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x1, y1, width, height);
+
+            // Draw text inside filled box for better visibility
+            ctx.font = "10px Arial"; // Set the font size and type
+            ctx.fillStyle = "white"; // Set text color
+            ctx.fillText(text, x1 + boxPadding, y1 - 5);  // Adjust the position of the text
           });
         }
       };
