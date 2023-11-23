@@ -47,7 +47,7 @@ const InceptionV3 = () => {
 
           {/* RIGHT ITEMS */}
           <div className="flex">
-            <div onMouseEnter={handleIconHover}>
+            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose}>
               <svg
                 width="56"
                 height="54"
@@ -67,7 +67,6 @@ const InceptionV3 = () => {
             {isModalOpen && (
               <div
                 className="absolute top-[84px] right-20 z-50 w-[531px] h-[515px] bg-customSidebarColor rounded-customPopUp p-8 text-ebony"
-                onMouseLeave={handleModalClose}
               >
                 <h1 className="w-full h-[10%] text-2xl font-semibold">
                   What is InceptionV3?
