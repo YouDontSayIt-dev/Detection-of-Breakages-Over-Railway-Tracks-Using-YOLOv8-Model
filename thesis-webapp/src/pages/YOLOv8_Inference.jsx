@@ -28,6 +28,10 @@ const Yolov8Inference = () => {
     setModalOpen(false);
   };
 
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen); // Toggle the state
+  };
+
   const location = useLocation(); //gets the current path location
 
   const [base64Image, setBase64Image] = useState(null);
@@ -107,7 +111,7 @@ const Yolov8Inference = () => {
           {/* RIGHT ITEMS */}
           <div className="flex">
             {/* FOR ICON AND MODAL POPUP */}
-            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose}>
+            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose} onClick={handleModalToggle}>
               <svg
                 width="56"
                 height="54"

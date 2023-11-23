@@ -15,6 +15,10 @@ const Yolov8Realtime = () => {
     setModalOpen(false);
   };
 
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen); // Toggle the state
+  };
+
   const location = useLocation(); //gets the current path location
 
   return (
@@ -46,7 +50,7 @@ const Yolov8Realtime = () => {
 
           {/* RIGHT ITEMS */}
           <div className="flex">
-            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose}s>
+            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose} onClick={handleModalToggle}>
               <svg
                 width="56"
                 height="54"

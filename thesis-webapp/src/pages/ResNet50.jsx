@@ -20,6 +20,10 @@ const ResNet50 = () => {
     setModalOpen(false);
   };
 
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen); // Toggle the state
+  };
+
   return (
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
@@ -47,7 +51,7 @@ const ResNet50 = () => {
 
           {/* RIGHT ITEMS */}
           <div className="flex">
-            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose}>
+            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose} onClick={handleModalToggle}>
               <svg
                 width="56"
                 height="54"

@@ -29,6 +29,10 @@ const Vgg16 = () => {
     setModalOpen(false);
   };
 
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen); // Toggle the state
+  };
+
   const [upload, setUpload] = useState(null);
   const [imgData, setimgData] = useState(null); // Store the bbox data in a hook
 
@@ -87,7 +91,7 @@ const Vgg16 = () => {
 
           {/* RIGHT ITEMS */}
           <div className="flex">
-            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose}>
+            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose} onClick={handleModalToggle}>
               <svg
                 width="56"
                 height="54"
