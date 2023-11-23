@@ -15,6 +15,10 @@ const Yolov8Realtime = () => {
     setModalOpen(false);
   };
 
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen); // Toggle the state
+  };
+
   const location = useLocation(); //gets the current path location
 
   return (
@@ -46,7 +50,7 @@ const Yolov8Realtime = () => {
 
           {/* RIGHT ITEMS */}
           <div className="flex">
-            <div onMouseEnter={handleIconHover}>
+            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose} onClick={handleModalToggle}>
               <svg
                 width="56"
                 height="54"
@@ -66,7 +70,6 @@ const Yolov8Realtime = () => {
             {isModalOpen && (
               <div
                 className="absolute top-[84px] right-20 z-50 w-[531px] h-[515px] bg-customSidebarColor rounded-customPopUp p-8 text-ebony"
-                onMouseLeave={handleModalClose}
               >
                 <h1 className="w-full h-[10%] text-2xl font-semibold">
                   What is Inferencing?

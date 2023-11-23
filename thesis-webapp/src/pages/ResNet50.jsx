@@ -20,6 +20,10 @@ const ResNet50 = () => {
     setModalOpen(false);
   };
 
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen); // Toggle the state
+  };
+
   return (
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
@@ -47,7 +51,7 @@ const ResNet50 = () => {
 
           {/* RIGHT ITEMS */}
           <div className="flex">
-            <div onMouseEnter={handleIconHover}>
+            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose} onClick={handleModalToggle}>
               <svg
                 width="56"
                 height="54"
@@ -67,7 +71,6 @@ const ResNet50 = () => {
             {isModalOpen && (
               <div
                 className="absolute top-[84px] right-20 z-50 w-[531px] h-[515px] bg-customSidebarColor rounded-customPopUp p-8 text-ebony"
-                onMouseLeave={handleModalClose}
               >
                 <h1 className="w-full h-[10%] text-2xl font-semibold">
                   What is ResNet50?

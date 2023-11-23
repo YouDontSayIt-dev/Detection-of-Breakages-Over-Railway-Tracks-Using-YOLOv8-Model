@@ -28,6 +28,10 @@ const Yolov8Inference = () => {
     setModalOpen(false);
   };
 
+  const handleModalToggle = () => {
+    setModalOpen(!isModalOpen); // Toggle the state
+  };
+
   const location = useLocation(); //gets the current path location
 
   const [base64Image, setBase64Image] = useState(null);
@@ -106,7 +110,8 @@ const Yolov8Inference = () => {
 
           {/* RIGHT ITEMS */}
           <div className="flex">
-            <div onMouseEnter={handleIconHover}>
+            {/* FOR ICON AND MODAL POPUP */}
+            <div onMouseEnter={handleIconHover} onMouseLeave={handleModalClose} onClick={handleModalToggle}>
               <svg
                 width="56"
                 height="54"
@@ -126,7 +131,6 @@ const Yolov8Inference = () => {
             {isModalOpen && (
               <div
                 className="absolute top-[84px] right-20 z-50 w-[531px] h-[515px] bg-customSidebarColor rounded-customPopUp p-8 text-ebony"
-                onMouseLeave={handleModalClose}
               >
                 <h1 className="w-full h-[10%] text-2xl font-semibold">
                   What is Inferencing?
