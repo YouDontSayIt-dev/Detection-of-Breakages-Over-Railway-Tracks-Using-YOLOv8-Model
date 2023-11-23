@@ -14,7 +14,7 @@ function HomePage() {
           </h2>
           <div className="w-full flex justify-center items-center">
           <div className="w-[300px] md:w-full">
-            <h1 className="text-[#EBEBEB] relative drop-shadow-2xl font-bold text-[40px] md:text-8xl lg:text-9xl pb-8 lg:pb-4 text-center lg:text-justify  lg:whitespace-nowrap tracking-widest">
+            <h1 className="text-[#EBEBEB] relative drop-shadow-2xl [text-shadow:0px_0px_20px_#228a88] font-bold text-[40px] md:text-8xl lg:text-9xl pb-8 lg:pb-4 text-center lg:text-justify  lg:whitespace-nowrap tracking-widest">
               RAIL DETECT
               <div className="absolute top-0 md:-top-5 right-0">
               <img src={camera} alt="camera" className="md:w-[36px] md:h-[32px]"></img>
