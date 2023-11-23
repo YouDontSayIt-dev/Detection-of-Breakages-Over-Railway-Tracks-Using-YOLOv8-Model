@@ -27,8 +27,8 @@ const AboutUs = () => {
               YOLOv8 Rail Detect
             </h1>
             <svg
-              width="9"
-              height="9"
+              width="15"
+              height="15"
               viewBox="0 0 36 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
