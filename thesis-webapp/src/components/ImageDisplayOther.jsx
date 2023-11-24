@@ -24,12 +24,12 @@ const ImageDisplay = ({ selectedImage, imgData, radioBtnValue }) => {
       const img = new Image();
       img.src = selectedImage;
       // Update canvas dimensions based on image size
-      setCanvasWidth(640);
-      setCanvasHeight(640);
+      setCanvasWidth(img.width);
+      setCanvasHeight(img.height);
       img.onload = () => {
         // Set the canvas dimensions
-        canvas.width = 640;
-        canvas.height = 640;
+        canvas.width = img.width;
+        canvas.height = img.height;
 
         // Draw the image with the updated dimensions
         ctx.drawImage(img, 0, 0);

@@ -35,11 +35,22 @@ const Vgg16 = () => {
 
   const [upload, setUpload] = useState(null);
   const [imgData, setimgData] = useState(null); // Store the bbox data in a hook
+  const [base64Image, setBase64Image] = useState(null); // Store the base64 image in a hook
 
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
       const file = event.target.files[0];
       setUpload(file);
+      if (file) {
+        const reader = new FileReader();
+  
+        reader.onload = (e) => {
+          const base64String = e.target.result;
+          setBase64Image(base64String);
+        };
+  
+        reader.readAsDataURL(file);
+      }
     }
   };
 
@@ -143,7 +154,7 @@ const Vgg16 = () => {
       <div className="flex w-screen h-fit mb-2 overflow-x-hidden z-0">
         {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
         <ImageDisplay
-          selectedImage={upload}
+          selectedImage={base64Image}
           imgData={imgData}
           radioBtnValue={outputOption}
         />
