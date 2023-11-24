@@ -15,7 +15,7 @@ const AboutUs = () => {
   const location = useLocation();
 
   return (
-    <div className="bg-customBackground w-screen h-screen overflow-hidden">
+    <div className="bg-customBackground w-full h-full overflow-hidden">
       {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
       <div className="w-full h-[120px] overflow-x-hidden">
@@ -27,8 +27,8 @@ const AboutUs = () => {
               YOLOv8 Rail Detect
             </h1>
             <svg
-              width="9"
-              height="9"
+              width="15"
+              height="15"
               viewBox="0 0 36 32"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const AboutUs = () => {
         {/* CONTAINER FOR THE RECTANGLE  */}
       <div className="grid grid-flow-col scroll-auto gap-[5rem] overscroll-x-contain snap-mandatory snap-x overflow-y-hidden">
         {/* CONTAINER FOR INDIVIDUAL RECTANGLE  */}
-        <div className="w-[280px] md:w-[320px] h-[502px] flex flex-col bg-[#071017] rounded-[24px] border-4 border-solid border-[#228a88] shadow-[-10px_10px_50.4px_#228a88]">
+        <div className="w-[280px] md:w-[305px] h-[502px] flex flex-col bg-[#071017] rounded-[24px] border-4 border-solid border-[#228a88] shadow-[-10px_10px_50.4px_#228a88]">
           {/* CONTAINER FOR IMAGE  */}
           <div className="mt-[50px] flex justify-center">
               <img className="w-[200px] h-[200px] object-cover block" alt="" src={dom_img} />

@@ -6,7 +6,8 @@ import train from "../assets/train.png";
 
 function HomePage() {
   return (
-    <div className="flex  lg:flex-row min-h-screen font-Open bg-customBackground relative">
+    <div className="flex  lg:flex-row min-h-screen font-Open [background:linear-gradient(0deg,rgba(34,138,136,0.5)_0%,rgba(7,16,23,0)_100%)] relative">
+      
       <div className="w-full lg:w-3/5 px-3 lg:px-28 pt-[20px] lg:pt-[100px]">
         <div>
           <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-4xl lg:text-[56px] md:pb-4">
