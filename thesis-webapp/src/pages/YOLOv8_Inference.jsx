@@ -85,10 +85,11 @@ const Yolov8Inference = () => {
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
-      <div className="w-full h-[120px] lg:h-[320px] overflow-x-hidden">
+      <div className="w-full h-[120px] overflow-x-hidden">
         <div className="flex h-[10%] lg:h-[30%] ml-[80px] lg:ml-[125px] items-center md:justify-between pt-[56px] md:p-[56px]">
           {/* CONTAINER FOR TOP ITEMS  */}
           {/* LEFT ITEMS */}
+          <div className="flex w-full flex-row justify-between">
           <div className="flex ">
             <h1 className="text-lg md:text-4xl font-bold text-justify text-ebony items-center justify-center">
               YOLOv8 Rail Detect
@@ -118,7 +119,7 @@ const Yolov8Inference = () => {
                 viewBox="0 0 56 54"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="cursor-pointer ml-4 md:h-[56px] md:w-[54px]"
+                className="cursor-pointer mr-4 md:h-[56px] md:w-[54px]"
               >
                 <path
                   d="M25.2 18.9H30.8V13.5H25.2M28 48.6C15.652 48.6 5.6 38.907 5.6 27C5.6 15.093 15.652 5.4 28 5.4C40.348 5.4 50.4 15.093 50.4 27C50.4 38.907 40.348 48.6 28 48.6ZM28 0C24.323 0 20.682 0.698376 17.2849 2.05525C13.8877 3.41213 10.8011 5.40094 8.20101 7.90812C2.94999 12.9716 0 19.8392 0 27C0 34.1608 2.94999 41.0284 8.20101 46.0919C10.8011 48.5991 13.8877 50.5879 17.2849 51.9448C20.682 53.3016 24.323 54 28 54C35.4261 54 42.548 51.1554 47.799 46.0919C53.05 41.0284 56 34.1608 56 27C56 23.4543 55.2758 19.9433 53.8686 16.6675C52.4615 13.3918 50.399 10.4153 47.799 7.90812C45.1989 5.40094 42.1123 3.41213 38.7151 2.05525C35.318 0.698376 31.677 0 28 0ZM25.2 40.5H30.8V24.3H25.2V40.5Z"
@@ -146,42 +147,27 @@ const Yolov8Inference = () => {
               </div>
             )}
           </div>
+          </div>
         </div>
-
-
-        {/* CONTAINER FOR BUTTONS */}
-        <div className="hidden lg:flex h-[65%] justify-between px-[359px] items-center z-10">
-          <UploadButton onChange={handleFileChange} />
-          <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
-          <InferenceButton onClick={sendImageToAPI} />
-        </div>
-
       </div>
 
-      <div className="hidden lg:flex w-screen h-fit mb-2 overflow-x-hidden z-0">
-            <ImageDisplay
-              selectedImage={base64Image}
-              drawLine={isInfering}
-              bboxData={bboxData}
-              radioBtnValue={outputOption}
-          />
-          </div>
-
        {/* CONTAINER FOR BUTTONS */}
-      <div className="lg:hidden flex flex-col justify-center items-center z-10 mx-6">
-        <div className="order-1 mb-8">
+      <div className=" flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
+        <div className="order-1 mb-[48px]">
           <UploadButton onChange={handleFileChange} />
         </div>
 
         <div className="order-2 mb-[48px]">
-        <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
+          <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
         </div>
 
         <div className="order-4  mb-[48px]">
-        <InferenceButton onClick={sendImageToAPI} />
+          <InferenceButton onClick={sendImageToAPI} />
         </div>
 
         <div className="order-3 lg:hidden mb-8">
+
+          {/* FOR MOBULE VERSION*/}
           {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
           <div className="flex w-screen h-fit mb-2 overflow-x-hidden z-0">
             <ImageDisplay
@@ -193,6 +179,17 @@ const Yolov8Inference = () => {
           </div>
         </div>
       </div>
+
+      {/* FOR DESKTOP VERSION*/}
+      {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
+      <div className="hidden lg:flex w-screen h-fit mb-2 overflow-x-hidden z-0 px-4">
+            <ImageDisplay
+              selectedImage={base64Image}
+              drawLine={isInfering}
+              bboxData={bboxData}
+              radioBtnValue={outputOption}
+          />
+          </div>
 
     </div>
   );
