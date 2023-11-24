@@ -105,7 +105,7 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue }) => {
     );
   } else {
     return (
-      <div className="w-[1202px] h-[598px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
+      <div className="w-[280px] h-[300px] md:w-[602px] lg:w-[1152px] lg:h-[600px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
        
         {/* Canvas for drawing */}
         <canvas

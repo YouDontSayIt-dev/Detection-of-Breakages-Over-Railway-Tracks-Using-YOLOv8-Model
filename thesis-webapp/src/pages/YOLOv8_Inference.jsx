@@ -149,7 +149,6 @@ const Yolov8Inference = () => {
           </div>
           </div>
         </div>
-
       </div>
 
        {/* CONTAINER FOR BUTTONS */}
@@ -159,14 +158,16 @@ const Yolov8Inference = () => {
         </div>
 
         <div className="order-2 mb-[48px]">
-        <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
+          <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
         </div>
 
         <div className="order-4  mb-[48px]">
-        <InferenceButton onClick={sendImageToAPI} />
+          <InferenceButton onClick={sendImageToAPI} />
         </div>
 
         <div className="order-3 lg:hidden mb-8">
+
+          {/* FOR MOBULE VERSION*/}
           {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
           <div className="flex w-screen h-fit mb-2 overflow-x-hidden z-0">
             <ImageDisplay
@@ -177,8 +178,10 @@ const Yolov8Inference = () => {
           />
           </div>
         </div>
-
       </div>
+
+      {/* FOR DESKTOP VERSION*/}
+      {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
       <div className="hidden lg:flex w-screen h-fit mb-2 overflow-x-hidden z-0 px-4">
             <ImageDisplay
               selectedImage={base64Image}
