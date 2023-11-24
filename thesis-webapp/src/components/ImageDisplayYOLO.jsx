@@ -77,7 +77,7 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue }) => {
 
   if (radioBtnValue === "image") {
     return (
-      <div className="w-[1202px] h-[598px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
+      <div className="w-[280px] h-[300px] md:w-[602px] lg:w-[1202px] lg:h-[550px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
         <div className="flex w-full h-[10%] justify-between items-center p-6 text-ebony font-bold text-2xl">
           <h1>Result:</h1>
         </div>
@@ -92,7 +92,7 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue }) => {
     );
   } else if (radioBtnValue === "JSON") {
     return (
-      <div className="flex flex-col w-[1202px] h-[598px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
+      <div className="flex flex-col w-[280px] h-[300px] md:w-[602px] lg:w-[1202px] lg:h-[550px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
         <div className="flex w-full h-[10%] justify-between items-center p-6 text-ebony font-bold text-2xl hover:text-active">
           {/* BUTTON TO COPY THE BBOX DATA */}
           <button onClick={copyToClipboard}>Copy Code</button>
@@ -106,9 +106,7 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue }) => {
   } else {
     return (
       <div className="w-[1202px] h-[598px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
-        <div className="flex w-full h-[10%] justify-between items-center p-6 text-ebony font-bold text-2xl">
-          <h1>Result:</h1>
-        </div>
+       
         {/* Canvas for drawing */}
         <canvas
           ref={canvasRef}
