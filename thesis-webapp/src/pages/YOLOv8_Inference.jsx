@@ -85,7 +85,7 @@ const Yolov8Inference = () => {
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
-      <div className="w-full h-[120px] lg:h-[320px] overflow-x-hidden">
+      <div className="w-full h-[120px] overflow-x-hidden">
         <div className="flex h-[10%] lg:h-[30%] ml-[80px] lg:ml-[125px] items-center md:justify-between pt-[56px] md:p-[56px]">
           {/* CONTAINER FOR TOP ITEMS  */}
           {/* LEFT ITEMS */}
@@ -148,28 +148,11 @@ const Yolov8Inference = () => {
           </div>
         </div>
 
-
-        {/* CONTAINER FOR BUTTONS */}
-        <div className="hidden lg:flex h-[65%] justify-between px-[359px] items-center z-10">
-          <UploadButton onChange={handleFileChange} />
-          <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
-          <InferenceButton onClick={sendImageToAPI} />
-        </div>
-
       </div>
 
-      <div className="hidden lg:flex w-screen h-fit mb-2 overflow-x-hidden z-0">
-            <ImageDisplay
-              selectedImage={base64Image}
-              drawLine={isInfering}
-              bboxData={bboxData}
-              radioBtnValue={outputOption}
-          />
-          </div>
-
        {/* CONTAINER FOR BUTTONS */}
-      <div className="lg:hidden flex flex-col justify-center items-center z-10 mx-6">
-        <div className="order-1 mb-8">
+      <div className=" flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
+        <div className="order-1 mb-[48px]">
           <UploadButton onChange={handleFileChange} />
         </div>
 
@@ -192,7 +175,16 @@ const Yolov8Inference = () => {
           />
           </div>
         </div>
+
       </div>
+      <div className="hidden lg:flex w-screen h-fit mb-2 overflow-x-hidden z-0 px-4">
+            <ImageDisplay
+              selectedImage={base64Image}
+              drawLine={isInfering}
+              bboxData={bboxData}
+              radioBtnValue={outputOption}
+          />
+          </div>
 
     </div>
   );
