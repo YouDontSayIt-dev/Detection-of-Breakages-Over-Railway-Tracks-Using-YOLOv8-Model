@@ -1,5 +1,5 @@
 import Sidebar from "../components/Sidebar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ImageDisplay from "../components/ImageDisplayOther";
 import UploadButton from "../components/UploadButton";
@@ -8,8 +8,14 @@ import InferenceButton from "../components/InferenceButton";
 import CrackDetectedModal from "../components/CrackDetectedModal"; //new import
 
 const Vgg16 = () => {
-  // FOR RADIO BTN VALUE
-  const [outputOption, setOutputOption] = useState("image");
+  const [detectionOccurred, setDetectionOccurred] = useState(false);
+
+  const handleDetection = (value) => {
+    setDetectionOccurred(value);
+  };
+
+  console.log("Detection Occurred:", detectionOccurred);
+
   // New state for modal visibility
   const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false);
 
@@ -17,6 +23,16 @@ const Vgg16 = () => {
   const handleCrackDetectedModalToggle = () => {
     setCrackDetectedModalOpen(!isCrackDetectedModalOpen);
   };
+
+  // useEffect to open the modal when detection occurs
+  useEffect(() => {
+    if (detectionOccurred) {
+      setCrackDetectedModalOpen(true);
+    }
+  }, [detectionOccurred]);
+
+  // FOR RADIO BTN VALUE
+  const [outputOption, setOutputOption] = useState("image");
 
   const handleRadioChange = (value) => {
     setOutputOption(value);
@@ -185,6 +201,7 @@ const Vgg16 = () => {
               selectedImage={base64Image}
               imgData={imgData}
               radioBtnValue={outputOption}
+              onDetection={handleDetection}
             />
           </div>
         </div>
@@ -197,24 +214,17 @@ const Vgg16 = () => {
           selectedImage={base64Image}
           imgData={imgData}
           radioBtnValue={outputOption}
+          onDetection={handleDetection}
         />
       </div>
 
-      <div className="order-5">
-        {/* SAMPLE Button to trigger modal */}
-        <button
-          onClick={handleCrackDetectedModalToggle}
-          className="bg-blue-500 text-white py-2 px-4 rounded"
-        >
-          Detect Crack
-        </button>
-      </div>
-
-      {/* Call the CrackDetectedModal component */}
-      <CrackDetectedModal
-        isOpen={isCrackDetectedModalOpen}
-        onClose={handleCrackDetectedModalToggle}
-      />
+      {/* Render CrackDetectedModal if detection occurred */}
+      {isCrackDetectedModalOpen && (
+        <CrackDetectedModal
+          isOpen={isCrackDetectedModalOpen}
+          onClose={handleCrackDetectedModalToggle}
+        />
+      )}
     </div>
   );
 };
