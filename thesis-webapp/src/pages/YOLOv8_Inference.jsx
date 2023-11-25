@@ -1,13 +1,37 @@
 import Sidebar from "../components/Sidebar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
 import ImageDisplay from "../components/ImageDisplayYOLO";
 import axios from "axios";
+import CrackDetectedModal from "../components/CrackDetectedModal";
 
 const Yolov8Inference = () => {
+  const [detectionOccurred, setDetectionOccurred] = useState(false);
+
+  const handleDetection = (value) => {
+    setDetectionOccurred(value);
+  };
+
+  console.log("Detection Occurred:", detectionOccurred);
+
+  // New state for modal visibility
+  const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false);
+
+  // Function to open/close the modal
+  const handleCrackDetectedModalToggle = () => {
+    setCrackDetectedModalOpen(!isCrackDetectedModalOpen);
+  };
+
+  // useEffect to open the modal when detection occurs
+  useEffect(() => {
+    if (detectionOccurred) {
+      setCrackDetectedModalOpen(true);
+    }
+  }, [detectionOccurred]);
+
   // FOR RADIO BTN VALUE
   const [outputOption, setOutputOption] = useState("image");
 
@@ -184,6 +208,7 @@ const Yolov8Inference = () => {
               drawLine={isInfering}
               bboxData={bboxData}
               radioBtnValue={outputOption}
+              onDetection={handleDetection}
             />
           </div>
         </div>
@@ -197,8 +222,17 @@ const Yolov8Inference = () => {
           drawLine={isInfering}
           bboxData={bboxData}
           radioBtnValue={outputOption}
+          onDetection={handleDetection}
         />
       </div>
+
+      {/* Render CrackDetectedModal if detection occurred */}
+      {isCrackDetectedModalOpen && (
+        <CrackDetectedModal
+          isOpen={isCrackDetectedModalOpen}
+          onClose={handleCrackDetectedModalToggle}
+        />
+      )}
     </div>
   );
 };
