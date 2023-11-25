@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue }) => {
+const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue, onDetection }) => {
+  const [detectionOccurred, setDetectionOccurred] = useState(false);
+
   const canvasRef = useRef(null);
   const isDrawing = drawLine;
   const [canvasWidth, setCanvasWidth] = useState(640); // Default width
@@ -69,11 +71,20 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue }) => {
             ctx.font = "10px Arial"; // Set the font size and type
             ctx.fillStyle = "white"; // Set text color
             ctx.fillText(text, x1 + boxPadding, y1 - 5);  // Adjust the position of the text
+
           });
+          setDetectionOccurred(true);
+        }else {
+          setDetectionOccurred(false);
         }
       };
     }
   }, [selectedImage, isDrawing, bboxData]);
+
+  // Use useEffect to call onDetection only when detectionOccurred changes
+  useEffect(() => {
+    onDetection(detectionOccurred);
+  }, [detectionOccurred, onDetection]);
 
   if (radioBtnValue === "image") {
     return (

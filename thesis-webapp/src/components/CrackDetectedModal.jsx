@@ -34,7 +34,7 @@ const CrackDetectedModal = ({ isOpen, onClose }) => {
                 <path
                   d="M41.4545 38.5263H34.5455V22.4737H41.4545M41.4545 51.3684H34.5455V44.9474H41.4545M0 61H76L38 0L0 61Z"
                   fill="#EBEBEB"
-                  fill-opacity="0.921569"
+                  fillOpacity="0.921569"
                 />
                 {/* Your SVG content goes here */}
               </svg>
