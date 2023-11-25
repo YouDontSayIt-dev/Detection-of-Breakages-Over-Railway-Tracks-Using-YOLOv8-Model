@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const ImageDisplay = ({ selectedImage, imgData, radioBtnValue, onDetection }) => {
-  const [detectionOccurred, setDetectionOccurred] = useState(false);
+const ImageDisplay = ({ selectedImage, imgData, radioBtnValue }) => {
+  // const [detectionOccurred, setDetectionOccurred] = useState(false);
 
   const canvasRef = useRef(null);
   const [canvasWidth, setCanvasWidth] = useState(640); // Default width
