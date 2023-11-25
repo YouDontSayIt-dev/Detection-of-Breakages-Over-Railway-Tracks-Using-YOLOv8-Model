@@ -1,12 +1,21 @@
 import Sidebar from "../components/Sidebar";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import ImageDisplay from "../components/ImageDisplayOther";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
-import ImageDisplay from "../components/ImageDisplayYOLO";
 
 const ResNet50 = () => {
+  // FOR RADIO BTN VALUE 
+  const [outputOption, setOutputOption] = useState("image");
+
+  const handleRadioChange = (value) => {
+    setOutputOption(value);
+  };
+
+  console.log("Current radio button value:", outputOption);
+
   const location = useLocation();
 
   // FOR MODAL POPUP
@@ -24,6 +33,48 @@ const ResNet50 = () => {
     setModalOpen(!isModalOpen); // Toggle the state
   };
 
+  const [upload, setUpload] = useState(null);
+  const [imgData, setimgData] = useState(null); // Store the bbox data in a hook
+  const [base64Image, setBase64Image] = useState(null); // Store the base64 image in a hook
+
+  const handleFileChange = (event) => {
+    if (event.target.files[0]) {
+      const file = event.target.files[0];
+      setUpload(file);
+      if (file) {
+        const reader = new FileReader();
+  
+        reader.onload = (e) => {
+          const base64String = e.target.result;
+          setBase64Image(base64String);
+        };
+  
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  const sendImageToAPI = async () => {
+    const url = "https://cors-anywhere.herokuapp.com/https://resnet50-crack-detection-app-f2bc954013b7.herokuapp.com/predict";
+
+    try {
+      const formData = new FormData();
+      formData.append("file", upload);
+      console.log(upload);
+
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      setimgData(data);
+      const str = JSON.stringify(data);
+      console.log(str);
+    }catch (error) {
+      console.log("Error:", error);
+    }
+  };
   return (
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
@@ -34,7 +85,7 @@ const ResNet50 = () => {
           {/* LEFT ITEMS */}
           <div className="flex w-full flex-row justify-between">
           <div className="flex">
-            <h1 className="text-lg md:text-4xl font-bold text-justify text-ebony items-center justify-center">ResNet50 Model</h1>
+            <h1 className="text-lg md:text-4xl font-bold text-justify text-ebony items-center justify-center">VGG-16 Model</h1>
             <svg
               width="9"
               height="9"
@@ -98,15 +149,15 @@ const ResNet50 = () => {
 
       <div className=" flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
         <div className="order-1 mb-[48px]">
-          <UploadButton  />
+          <UploadButton onChange={handleFileChange} />
         </div>
 
         <div className="order-2 mb-[48px]">
-          <RadioInput />
+          <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
         </div>
 
         <div className="order-4  mb-[48px]">
-          <InferenceButton  />
+          <InferenceButton onClick={sendImageToAPI} />
         </div>
 
         <div className="order-3 lg:hidden mb-8">
@@ -115,6 +166,9 @@ const ResNet50 = () => {
           {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
           <div className="flex w-screen h-fit mb-2 overflow-x-hidden z-0">
             <ImageDisplay
+              selectedImage={base64Image}
+              imgData={imgData}
+              radioBtnValue={outputOption}
           />
           </div>
         </div>
@@ -124,6 +178,9 @@ const ResNet50 = () => {
      {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
       <div className="hidden lg:flex w-screen h-fit mb-2 overflow-x-hidden z-0 px-4">
         <ImageDisplay
+          selectedImage={base64Image}
+          imgData={imgData}
+          radioBtnValue={outputOption}
         />
         
 
