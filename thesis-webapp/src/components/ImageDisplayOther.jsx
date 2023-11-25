@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const ImageDisplay = ({ selectedImage, imgData, radioBtnValue }) => {
+const ImageDisplay = ({ selectedImage, imgData, radioBtnValue, onDetection }) => {
+  const [detectionOccurred, setDetectionOccurred] = useState(false);
+
   const canvasRef = useRef(null);
   const [canvasWidth, setCanvasWidth] = useState(640); // Default width
   const [canvasHeight, setCanvasHeight] = useState(640); // Default height
@@ -63,6 +65,8 @@ const ImageDisplay = ({ selectedImage, imgData, radioBtnValue }) => {
         <div className="w-full h-[90%] text-ebony overflow-auto px-6">
           {/* Display bounding box data */}
           <pre>{JSON.stringify(imgData, null, 2)}</pre>
+          
+          {/* NYD ADD CODE FOR DISPLAYING THE POPUP MODAL WHEN THERE IS A CLASS DETECTED HERE */}
         </div>
       </div>
     );
