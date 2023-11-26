@@ -1,14 +1,38 @@
 import Sidebar from "../components/Sidebar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ImageDisplay from "../components/ImageDisplayOther";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
 import Header from "../components/Header";
+import CrackDetectedModal from "../components/CrackDetectedModal"; //new import
 
 const InceptionV3 = () => {
-  // FOR RADIO BTN VALUE 
+  const [detectionOccurred, setDetectionOccurred] = useState(false);
+
+  const handleDetection = (value) => {
+    setDetectionOccurred(value);
+  };
+
+  console.log("Detection Occurred:", detectionOccurred);
+
+  // New state for modal visibility
+  const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false);
+
+  // Function to open/close the modal
+  const handleCrackDetectedModalToggle = () => {
+    setCrackDetectedModalOpen(!isCrackDetectedModalOpen);
+  };
+
+  // useEffect to open the modal when detection occurs
+  useEffect(() => {
+    if (detectionOccurred) {
+      setCrackDetectedModalOpen(true);
+    }
+  }, [detectionOccurred]);
+
+  // FOR RADIO BTN VALUE
   const [outputOption, setOutputOption] = useState("image");
 
   const handleRadioChange = (value) => {
@@ -29,19 +53,20 @@ const InceptionV3 = () => {
       setUpload(file);
       if (file) {
         const reader = new FileReader();
-  
+
         reader.onload = (e) => {
           const base64String = e.target.result;
           setBase64Image(base64String);
         };
-  
+
         reader.readAsDataURL(file);
       }
     }
   };
 
   const sendImageToAPI = async () => {
-    const url = "https://cors-anywhere.herokuapp.com/https://incv3-crack-detection-app-187165d6d6c5.herokuapp.com/predict";
+    const url =
+      "https://cors-anywhere.herokuapp.com/https://incv3-crack-detection-app-187165d6d6c5.herokuapp.com/predict";
 
     try {
       const formData = new FormData();
@@ -57,7 +82,7 @@ const InceptionV3 = () => {
       setimgData(data);
       const str = JSON.stringify(data);
       console.log(str);
-    }catch (error) {
+    } catch (error) {
       console.log("Error:", error);
     }
   };
@@ -65,9 +90,7 @@ const InceptionV3 = () => {
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
-      <Header>
-        InceptionV3 Model
-      </Header>
+      <Header>InceptionV3 Model</Header>
 
       <div className=" flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
         <div className="order-1 mb-[48px]">
@@ -75,7 +98,10 @@ const InceptionV3 = () => {
         </div>
 
         <div className="order-2 mb-[48px]">
-          <RadioInput selectedValue={outputOption} onRadioChange={handleRadioChange}/>
+          <RadioInput
+            selectedValue={outputOption}
+            onRadioChange={handleRadioChange}
+          />
         </div>
 
         <div className="order-4  mb-[48px]">
@@ -83,7 +109,6 @@ const InceptionV3 = () => {
         </div>
 
         <div className="order-3 lg:hidden mb-8">
-
           {/* FOR MOBILE VERSION*/}
           {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
           <div className="flex w-screen h-fit mb-2 overflow-x-hidden z-0">
@@ -91,22 +116,30 @@ const InceptionV3 = () => {
               selectedImage={base64Image}
               imgData={imgData}
               radioBtnValue={outputOption}
-          />
+              onDetection={handleDetection}
+            />
           </div>
         </div>
       </div>
 
-     {/* FOR DESKTOP VERSION*/}
-     {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
+      {/* FOR DESKTOP VERSION*/}
+      {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
       <div className="hidden lg:flex w-screen h-fit mb-2 overflow-x-hidden z-0 px-4">
         <ImageDisplay
           selectedImage={base64Image}
           imgData={imgData}
           radioBtnValue={outputOption}
+          onDetection={handleDetection}
         />
-        
-
       </div>
+
+      {/* Render CrackDetectedModal if detection occurred */}
+      {detectionOccurred && (
+        <CrackDetectedModal
+          isOpen={isCrackDetectedModalOpen}
+          onClose={handleCrackDetectedModalToggle}
+        />
+      )}
     </div>
   );
 };
