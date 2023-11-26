@@ -40,7 +40,7 @@ const RealtimeDisplay = (props) => {
 
   const startInfer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    inferRunning = false;
+    inferRunning = true;
     window.roboflow
       .auth({
         publishable_key: PUBLISHABLE_ROBOFLOW_API_KEY,
