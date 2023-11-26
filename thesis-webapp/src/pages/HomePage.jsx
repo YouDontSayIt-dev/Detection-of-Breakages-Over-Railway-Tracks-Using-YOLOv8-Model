@@ -6,15 +6,16 @@ import train from "../assets/train.png";
 function HomePage() {
   return (
     <div className="flex  lg:flex-row min-h-screen font-Open [background:linear-gradient(0deg,rgba(34,138,136,0.5)_0%,rgba(7,16,23,0)_100%)] relative">
-      
       <div className="w-full lg:w-3/5 px-3 lg:pl-32 pt-[20px] lg:pt-[200px]">
         <div>
           <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-4xl leading-normal lg:text-[56px] md:pb-4">
             WELCOME TO
           </h2>
-          
+
           <div className="flex w-full xl:w-[1030px] justify-center lg:justify-normal ">
-            <h1 className="text-[#EBEBEB] relative drop-shadow-2xl [text-shadow:0px_0px_20px_#228a88] font-bold text-[37px] md:text-7xl lg:text-9xl pb-8 lg:pb-4 text-center lg:text-justify tracking-widest">RAIL DETECT</h1>
+            <h1 className="text-[#EBEBEB] relative drop-shadow-2xl [text-shadow:0px_0px_20px_#228a88] font-bold text-[37px] md:text-7xl lg:text-9xl pb-8 lg:pb-4 text-center lg:text-justify tracking-widest">
+              RAIL DETECT
+            </h1>
             <svg
               width="15"
               height="15"
@@ -52,15 +53,15 @@ function HomePage() {
           </div>
         </div>
         <div className="w-full flex justify-center lg:justify-normal items-center pb-9">
-        <HomePageButton >
-          <Link to="/yolov8/inference">Get Started</Link>
-        </HomePageButton>
+          <Link to="/yolov8/inference">
+            <HomePageButton>Get Started</HomePageButton>
+          </Link>
         </div>
       </div>
 
       <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden">
         <div className="lg:absolute lg:-bottom-20 lg:-right-20">
-          <img src={train} alt="train" ></img>
+          <img src={train} alt="train"></img>
         </div>
       </div>
     </div>

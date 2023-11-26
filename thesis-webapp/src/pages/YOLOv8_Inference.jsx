@@ -95,9 +95,7 @@ const Yolov8Inference = () => {
     <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
-      <Header>
-        Yolov8 Rail Detect
-      </Header>
+      <Header>YOLOv8 Rail Detect</Header>
 
       {/* CONTAINER FOR BUTTONS */}
       <div className=" flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
