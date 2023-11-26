@@ -11,9 +11,36 @@ const RealtimeDisplay = (props) => {
   var inferRunning;
   // var model;
 
+  // FOR BACK CAMERA SUPPORT
+  useEffect(() => {
+    const setupCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' }, // Use 'environment' for the back camera
+        });
+
+        if (webcamRef.current) {
+          const videoTrack = stream.getVideoTracks()[0];
+          const capabilities = videoTrack.getCapabilities();
+
+          // Check if the camera supports facingMode
+          if (capabilities.facingMode.includes('environment')) {
+            webcamRef.current.video.srcObject = stream;
+          } else {
+            console.error('Camera does not support facingMode: environment');
+          }
+        }
+      } catch (error) {
+        console.error('Error accessing the camera: ', error);
+      }
+    };
+
+    setupCamera();
+  }, []);
+
   const startInfer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    inferRunning = true;
+    inferRunning = false;
     window.roboflow
       .auth({
         publishable_key: PUBLISHABLE_ROBOFLOW_API_KEY,

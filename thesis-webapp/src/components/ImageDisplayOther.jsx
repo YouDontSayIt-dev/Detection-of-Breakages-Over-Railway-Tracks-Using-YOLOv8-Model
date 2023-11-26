@@ -1,11 +1,16 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const ImageDisplay = ({ selectedImage, imgData, radioBtnValue }) => {
-  // const [detectionOccurred, setDetectionOccurred] = useState(false);
+const ImageDisplay = ({
+  selectedImage,
+  imgData,
+  radioBtnValue,
+  onDetection,
+}) => {
+  const [detectionOccurred, setDetectionOccurred] = useState(false);
 
   const canvasRef = useRef(null);
-  const [canvasWidth, setCanvasWidth] = useState(640); // Default width
-  const [canvasHeight, setCanvasHeight] = useState(640); // Default height
+  const [canvasWidth, setCanvasWidth] = useState(1000); // Default width
+  const [canvasHeight, setCanvasHeight] = useState(1000); // Default height
 
   const copyToClipboard = () => {
     // Create a temporary textarea element to copy the text
@@ -35,10 +40,24 @@ const ImageDisplay = ({ selectedImage, imgData, radioBtnValue }) => {
 
         // Draw the image with the updated dimensions
         ctx.drawImage(img, 0, 0);
-
       };
     }
   }, [selectedImage, imgData]);
+
+  // Use useEffect to call onDetection only when detectionOccurred changes
+  useEffect(() => {
+    onDetection(detectionOccurred);
+  }, [detectionOccurred, onDetection]);
+
+  useEffect(() => {
+    // Check if "cracks" class is present in the prediction array
+    const isCracksDetected = imgData?.prediction?.some(
+      (item) => item.class === "cracks"
+    );
+
+    // Update detectionOccurred based on the result
+    setDetectionOccurred(!!isCracksDetected);
+  }, [imgData]);
 
   if (radioBtnValue === "image") {
     return (
@@ -65,8 +84,6 @@ const ImageDisplay = ({ selectedImage, imgData, radioBtnValue }) => {
         <div className="w-full h-[90%] text-ebony overflow-auto px-6">
           {/* Display bounding box data */}
           <pre>{JSON.stringify(imgData, null, 2)}</pre>
-          
-          {/* NYD ADD CODE FOR DISPLAYING THE POPUP MODAL WHEN THERE IS A CLASS DETECTED HERE */}
         </div>
       </div>
     );
