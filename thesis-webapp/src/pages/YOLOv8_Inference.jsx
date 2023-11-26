@@ -144,7 +144,7 @@ const Yolov8Inference = () => {
       </div>
 
       {/* Render CrackDetectedModal if detection occurred */}
-      {isCrackDetectedModalOpen && (
+      {detectionOccurred && (
         <CrackDetectedModal
           isOpen={isCrackDetectedModalOpen}
           onClose={handleCrackDetectedModalToggle}

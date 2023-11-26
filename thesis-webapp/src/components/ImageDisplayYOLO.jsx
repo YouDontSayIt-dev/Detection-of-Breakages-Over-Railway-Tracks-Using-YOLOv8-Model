@@ -72,8 +72,8 @@ const ImageDisplay = ({ selectedImage, drawLine, bboxData, radioBtnValue, onDete
             ctx.fillStyle = "white"; // Set text color
             ctx.fillText(text, x1 + boxPadding, y1 - 5);  // Adjust the position of the text
 
+            setDetectionOccurred(true);
           });
-          setDetectionOccurred(true);
         }else {
           setDetectionOccurred(false);
         }
