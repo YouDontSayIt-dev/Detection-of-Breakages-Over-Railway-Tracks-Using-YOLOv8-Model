@@ -6,7 +6,7 @@ import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
 import CrackDetectedModal from "../components/CrackDetectedModal"; //new import
-import Header from "../components/Header";
+import Header from "../components/Header-vgg16";
 
 const Vgg16 = () => {
   const [detectionOccurred, setDetectionOccurred] = useState(false);

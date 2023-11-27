@@ -2,7 +2,7 @@ import Sidebar from "../components/Sidebar";
 import React from "react";
 import { useLocation } from "react-router-dom";
 import RealtimeDisplay from "../components/RealtimeDisplay";
-import Header from "../components/Header";
+import Header from "../components/Header-yolo";
 
 const Yolov8Realtime = () => {
   

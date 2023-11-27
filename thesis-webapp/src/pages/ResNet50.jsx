@@ -5,7 +5,7 @@ import ImageDisplay from "../components/ImageDisplayOther";
 import UploadButton from "../components/UploadButton";
 import RadioInput from "../components/RadioInput";
 import InferenceButton from "../components/InferenceButton";
-import Header from "../components/Header";
+import Header from "../components/Header-resnet50";
 import CrackDetectedModal from "../components/CrackDetectedModal"; //new import
 
 const ResNet50 = () => {
