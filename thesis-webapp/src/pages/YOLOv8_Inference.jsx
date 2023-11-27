@@ -7,7 +7,7 @@ import InferenceButton from "../components/InferenceButton";
 import ImageDisplay from "../components/ImageDisplayYOLO";
 import axios from "axios";
 import CrackDetectedModal from "../components/CrackDetectedModal";
-import Header from "../components/Header";
+import Header from "../components/Header-yolo";
 
 const Yolov8Inference = () => {
   const [detectionOccurred, setDetectionOccurred] = useState(false);
