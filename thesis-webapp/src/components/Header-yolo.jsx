@@ -68,21 +68,17 @@ export default function Header(props) {
               {isModalOpen && (
                 <div className="absolute top-[99px] right-5 lg:right-20 z-50 w-[280px] lg:w-[531px] h-[600px] lg:h-[515px] bg-customSidebarColor rounded-customPopUp p-8 text-ebony">
                   <h1 className="w-full h-[10%] text-2xl font-semibold">
-                    What is VGG16?
+                  What is Inferencing?
                   </h1>
                   <p className="w-full h-[80%] py-4 text-base text-left lg:text-2xl">
-                    VGG-16 is known for its simplicity and uniform architecture,
-                    consisting of 16 layers, including 13 convolutional layers
-                    and 3 fully connected layers. The convolutional layers use
-                    small 3x3 filters with a stride of 1 and are followed by
-                    max-pooling layers with 2x2 filters and a stride of 2. The
-                    use of small filters and deep layers helps the network learn
-                    hierarchical features at different scales.
+                  Inferencing refers to the process of using a trained model to make predictions or inferences on new, unseen data. Object detection involves identifying and locating objects within an image or a video frame. The trained model, often based on machine learning or deep learning techniques, has learned to recognize patterns and features that distinguish different objects.
                   </p>
+                  {/* 
                   <div className="flex items-center justify-end w-full text-2xl">
                     <h1>Model's Accuracy: </h1>
-                    <h1 className="font-semibold text-4xl mb-4 ml-4">99%</h1>
+                    <h1 className="font-semibold text-4xl mb-4 ml-4">92%</h1>
                   </div>
+                  */}
                 </div>
               )}
             </div>
