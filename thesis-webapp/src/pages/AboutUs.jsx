@@ -24,7 +24,7 @@ const AboutUs = () => {
           {/* LEFT ITEMS */}
           <div className="flex">
             <h1 className="text-xl lg:text-4xl font-bold text-justify text-ebony">
-              YOLOv8 Rail Detect
+              YOLOv8 Breakage Detect
             </h1>
             <svg
               width="15"
