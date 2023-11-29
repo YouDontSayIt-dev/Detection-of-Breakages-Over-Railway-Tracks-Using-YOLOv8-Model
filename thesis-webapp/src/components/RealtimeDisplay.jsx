@@ -3,7 +3,7 @@ import Webcam from "react-webcam";
 
 const PUBLISHABLE_ROBOFLOW_API_KEY = "rf_1tTtNNqzfsV4uo1uqS9nH6ZXHyl1";
 const PROJECT_URL = "railway-crack-detection";
-const MODEL_VERSION = "15";
+const MODEL_VERSION = "3";
 
 const RealtimeDisplay = (props) => {
   const webcamRef = useRef(null);
