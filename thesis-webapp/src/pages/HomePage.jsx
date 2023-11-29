@@ -8,13 +8,13 @@ function HomePage() {
     <div className="flex  lg:flex-row min-h-screen font-Open [background:linear-gradient(0deg,rgba(34,138,136,0.5)_0%,rgba(7,16,23,0)_100%)] relative">
       <div className="w-full lg:w-3/5 px-3 lg:pl-32 pt-[20px] lg:pt-[200px]">
         <div>
-          <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-4xl leading-normal lg:text-[56px] md:pb-4">
+          <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-2xl leading-normal lg:text-5xl md:pb-4">
             WELCOME TO
           </h2>
 
           <div className="flex w-full xl:w-[1030px] justify-center lg:justify-normal ">
-            <h1 className="text-[#EBEBEB] relative drop-shadow-2xl [text-shadow:0px_0px_20px_#228a88] font-bold text-[37px] md:text-7xl lg:text-9xl pb-8 lg:pb-4 text-center lg:text-justify tracking-widest">
-              RAIL DETECT
+            <h1 className="text-[#EBEBEB] relative drop-shadow-2xl [text-shadow:0px_0px_20px_#228a88] font-bold leading-none text-[37px] md:text-6xl lg:text-[90px] pb-8 lg:pb-4 text-center lg:text-justify tracking-widest">
+              BREAKAGE DETECT
             </h1>
             <svg
               width="15"

@@ -14,7 +14,7 @@ const Yolov8Realtime = () => {
       {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
       <Header>
-        Yolov8 Rail Detect
+        Yolov8 Breakage Detect
       </Header>
 
 

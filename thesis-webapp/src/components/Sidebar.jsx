@@ -31,8 +31,8 @@ const Sidebar = ({ activePage }) => {
     } else {
       return (
         <div className="flex rounded-tr-customSidebar">
-          <div className="w-[80%] text-ebony text-justify text-shadow-md text-3xl font-bold mt-9 ml-6">
-          <NavLink to="/">RAIL DETECT</NavLink>
+          <div className="w-[80%] text-ebony text-justify text-shadow-md text-2xl font-bold mt-9 ml-6">
+          <NavLink to="/">BREAKAGE DETECT</NavLink>
           </div>
           <div
             className="w-[20%] flex justify-end cursor-pointer text-center mt-10 mr-8"
