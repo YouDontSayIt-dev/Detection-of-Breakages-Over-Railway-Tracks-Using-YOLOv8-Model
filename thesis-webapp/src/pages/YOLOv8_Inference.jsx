@@ -83,7 +83,7 @@ const Yolov8Inference = () => {
           // setIsInfering(true); // Enable the inference button
           // console.log(bboxData);
 
-          // Modify the class name of the first prediction
+          // Modify the class name of the predictions
           const modifiedBboxData = {
             ...response.data,
             predictions: response.data.predictions.map((prediction) => ({
