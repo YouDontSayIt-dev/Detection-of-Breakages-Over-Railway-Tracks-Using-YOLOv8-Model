@@ -80,7 +80,7 @@ const ImageDisplay = ({
 
             // Draw bounding box border
             ctx.strokeStyle = "red";
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 5;
             ctx.strokeRect(x1, y1, width, height);
 
             // Draw text inside filled box for better visibility
