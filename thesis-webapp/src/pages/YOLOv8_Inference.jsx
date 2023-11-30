@@ -78,10 +78,23 @@ const Yolov8Inference = () => {
       })
         .then(function (response) {
           // if may response, convert response.data to JSON
-          const bboxData = JSON.stringify(response.data);
-          setBboxData(response.data); // Store bboxData in state
+          // const bboxData = JSON.stringify(response.data);
+          // setBboxData(response.data); // Store bboxData in state
+          // setIsInfering(true); // Enable the inference button
+          // console.log(bboxData);
+
+          // Modify the class name of the predictions
+          const modifiedBboxData = {
+            ...response.data,
+            predictions: response.data.predictions.map((prediction) => ({
+              ...prediction,
+              class: "railway-breakages",
+            })),
+          };
+
+          setBboxData(modifiedBboxData); // Store modified bboxData in state
           setIsInfering(true); // Enable the inference button
-          console.log(bboxData);
+          console.log(modifiedBboxData);
         })
         .catch(function (error) {
           console.log(error.message);
