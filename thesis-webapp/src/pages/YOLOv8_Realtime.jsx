@@ -22,7 +22,7 @@ const Yolov8Realtime = () => {
         {/* CONTAINER FOR YOLOV8 IMAGE/JSON OUTPUT  */}
         <RealtimeDisplay
           modelName="railway-crack-detection"
-          modelVersion="10"
+          modelVersion="15"
         />
       </div>
     </div>
