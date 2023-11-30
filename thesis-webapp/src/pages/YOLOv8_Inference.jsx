@@ -67,7 +67,7 @@ const Yolov8Inference = () => {
     if (base64Image) {
       axios({
         method: "POST",
-        url: "https://detect.roboflow.com/railway-crack-detection/2",
+        url: "https://detect.roboflow.com/railway-crack-detection/10",
         params: {
           api_key: "j4oHBD3msAlUlJvXwsHz",
         },
