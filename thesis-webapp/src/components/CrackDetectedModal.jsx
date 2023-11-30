@@ -44,7 +44,7 @@ const CrackDetectedModal = ({ isOpen, onClose }) => {
             </div>
             <div className="modal-bottom">
               <h1 className="warning">DETECTED!</h1>
-              <span className="modal-caption">Railway Crack Detected!</span>
+              <span className="modal-caption">Railway Breakage Detected!</span>
               <button className="close-button" onClick={onClose}>
                 CLOSE
               </button>
