@@ -16,8 +16,8 @@ const ImageDisplay = ({
 
   const canvasRef = useRef(null);
   const isDrawing = drawLine;
-  const [canvasWidth, setCanvasWidth] = useState(640); // Default width
-  const [canvasHeight, setCanvasHeight] = useState(640); // Default height
+  const [canvasWidth] = useState(640); // Default width
+  const [canvasHeight] = useState(640); // Default height
 
   const copyToClipboard = () => {
     // Create a temporary textarea element to copy the text
@@ -36,10 +36,8 @@ const ImageDisplay = ({
 
       // Load the image onto the canvas
       const img = new Image();
-      img.src = selectedImage;
-      // Update canvas dimensions based on image size
-      setCanvasWidth(img.width);
-      setCanvasHeight(img.height);
+      
+      
       img.onload = () => {
         // Set the canvas dimensions
         canvas.width = img.width;
@@ -94,6 +92,7 @@ const ImageDisplay = ({
           setDetectionOccurred(false);
         }
       };
+      img.src = selectedImage;
     }
   }, [selectedImage, isDrawing, bboxData]);
 
@@ -174,3 +173,4 @@ const ImageDisplay = ({
 };
 
 export default ImageDisplay;
+
