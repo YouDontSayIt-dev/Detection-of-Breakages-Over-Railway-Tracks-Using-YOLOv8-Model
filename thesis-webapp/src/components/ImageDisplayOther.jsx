@@ -53,9 +53,9 @@ const ImageDisplay = ({
   }, [detectionOccurred, onDetection]);
 
   useEffect(() => {
-    // Check if "cracks" class is present in the prediction array
+    // Check if "railway-breakages" class is present in the prediction array
     const isCracksDetected = imgData?.prediction?.some(
-      (item) => item.class === "cracks"
+      (item) => item.class === "railway-breakages"
     );
 
     // Update detectionOccurred based on the result
