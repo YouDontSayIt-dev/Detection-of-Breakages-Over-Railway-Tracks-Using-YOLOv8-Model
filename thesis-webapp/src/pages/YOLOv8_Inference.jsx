@@ -17,7 +17,8 @@ const Yolov8Inference = () => {
   const [detectionOccurred, setDetectionOccurred] = useState(false);
   // New state for modal visibility
   const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false);
-  const [isCrackNotDetectedModalOpen, setCrackNotDetectedModalOpen] = useState(null);
+  const [isCrackNotDetectedModalOpen, setCrackNotDetectedModalOpen] =
+    useState(null);
   // FOR RADIO BTN VALUE
   const [outputOption, setOutputOption] = useState("image");
 
@@ -89,19 +90,18 @@ const Yolov8Inference = () => {
         },
       })
         .then(function (response) {
-          // if may response, convert response.data to JSON
-          // const bboxData = JSON.stringify(response.data);
-          // setBboxData(response.data); // Store bboxData in state
-          // setIsInfering(true); // Enable the inference button
-          // console.log(bboxData);
+          // Check if there are predictions
+          const hasPredictions = response.data.predictions.length > 0;
 
           // Modify the class name of the predictions
           const modifiedBboxData = {
             ...response.data,
-            predictions: response.data.predictions.map((prediction) => ({
-              ...prediction,
-              class: "railway-breakages",
-            })),
+            predictions: hasPredictions
+              ? response.data.predictions.map((prediction) => ({
+                  ...prediction,
+                  class: "railway-breakages",
+                }))
+              : [{ class: "no-breakages" }],
           };
 
           setBboxData(modifiedBboxData); // Store modified bboxData in state
