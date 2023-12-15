@@ -7,19 +7,26 @@ import InferenceButton from "../components/InferenceButton";
 import ImageDisplay from "../components/ImageDisplayYOLO";
 import axios from "axios";
 import CrackDetectedModal from "../components/CrackDetectedModal";
+import CrackNotDetectedModal from "../components/CrackNotDetectedModal";
 import Header from "../components/Header-yolo";
 
 const Yolov8Inference = () => {
+  const [base64Image, setBase64Image] = useState(null);
+  const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
+  const [bboxData, setBboxData] = useState(null); // Store the bbox data in a hook
   const [detectionOccurred, setDetectionOccurred] = useState(false);
+  // New state for modal visibility
+  const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false);
+  const [isCrackNotDetectedModalOpen, setCrackNotDetectedModalOpen] =
+    useState(null);
+  // FOR RADIO BTN VALUE
+  const [outputOption, setOutputOption] = useState("image");
 
   const handleDetection = (value) => {
     setDetectionOccurred(value);
   };
 
   console.log("Detection Occurred:", detectionOccurred);
-
-  // New state for modal visibility
-  const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false);
 
   // Function to open/close the modal
   const handleCrackDetectedModalToggle = () => {
@@ -33,8 +40,18 @@ const Yolov8Inference = () => {
     }
   }, [detectionOccurred]);
 
-  // FOR RADIO BTN VALUE
-  const [outputOption, setOutputOption] = useState("image");
+  // Function to open/close the modal
+  const handleCrackNotDetectedModalToggle = () => {
+    setCrackNotDetectedModalOpen(!isCrackNotDetectedModalOpen);
+  };
+
+  // useEffect to open the modal when detection occurs
+  useEffect(() => {
+    // Only open CrackNotDetectedModal if detectionOccurred is false and isInfering is true
+    if (detectionOccurred === false && isInfering) {
+      setCrackNotDetectedModalOpen(true);
+    }
+  }, [detectionOccurred, isInfering]);
 
   const handleRadioChange = (value) => {
     setOutputOption(value);
@@ -43,10 +60,6 @@ const Yolov8Inference = () => {
   console.log("Current radio button value:", outputOption);
 
   const location = useLocation(); //gets the current path location
-
-  const [base64Image, setBase64Image] = useState(null);
-  const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
-  const [bboxData, setBboxData] = useState(null); // Store the bbox data in a hook
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -77,19 +90,18 @@ const Yolov8Inference = () => {
         },
       })
         .then(function (response) {
-          // if may response, convert response.data to JSON
-          // const bboxData = JSON.stringify(response.data);
-          // setBboxData(response.data); // Store bboxData in state
-          // setIsInfering(true); // Enable the inference button
-          // console.log(bboxData);
+          // Check if there are predictions
+          const hasPredictions = response.data.predictions.length > 0;
 
           // Modify the class name of the predictions
           const modifiedBboxData = {
             ...response.data,
-            predictions: response.data.predictions.map((prediction) => ({
-              ...prediction,
-              class: "railway-breakages",
-            })),
+            predictions: hasPredictions
+              ? response.data.predictions.map((prediction) => ({
+                  ...prediction,
+                  class: "railway-breakages",
+                }))
+              : [{ class: "no-breakages" }],
           };
 
           setBboxData(modifiedBboxData); // Store modified bboxData in state
@@ -101,6 +113,24 @@ const Yolov8Inference = () => {
         });
     } else {
       console.log("No valid image selected.");
+    }
+  };
+
+  const renderModal = () => {
+    if (detectionOccurred) {
+      return (
+        <CrackDetectedModal
+          isOpen={isCrackDetectedModalOpen}
+          onClose={handleCrackDetectedModalToggle}
+        />
+      );
+    } else {
+      return (
+        <CrackNotDetectedModal
+          isOpen={isCrackNotDetectedModalOpen}
+          onClose={handleCrackNotDetectedModalToggle}
+        />
+      );
     }
   };
 
@@ -154,13 +184,8 @@ const Yolov8Inference = () => {
         />
       </div>
 
-      {/* Render CrackDetectedModal if detection occurred */}
-      {detectionOccurred && (
-        <CrackDetectedModal
-          isOpen={isCrackDetectedModalOpen}
-          onClose={handleCrackDetectedModalToggle}
-        />
-      )}
+      {/* Render modal based on detection */}
+      {renderModal()}
     </div>
   );
 };

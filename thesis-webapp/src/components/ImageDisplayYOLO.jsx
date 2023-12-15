@@ -33,6 +33,7 @@ const ImageDisplay = ({
     if (selectedImage && canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
+      let hasRailwayBreakages = false; // Flag to check if "railway-breakages" is present
 
       // Load the image onto the canvas
       const img = new Image();
@@ -58,6 +59,10 @@ const ImageDisplay = ({
             const height = prediction.height;
             const className = prediction.class;
             const confidence = prediction.confidence;
+
+            if (className === "railway-breakages") {
+              hasRailwayBreakages = true;
+            }
 
             const x1 = x - width / 2;
             const y1 = y - height / 2;
@@ -86,7 +91,7 @@ const ImageDisplay = ({
             ctx.fillStyle = "white"; // Set text color
             ctx.fillText(text, x1 + boxPadding, y1 - 5); // Adjust the position of the text
 
-            setDetectionOccurred(true);
+            setDetectionOccurred(hasRailwayBreakages);
           });
         } else {
           setDetectionOccurred(false);
