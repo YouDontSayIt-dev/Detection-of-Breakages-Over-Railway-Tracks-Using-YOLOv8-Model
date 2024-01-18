@@ -76,7 +76,7 @@ const Vgg16 = () => {
 
   const sendImageToAPI = async () => {
     const url =
-      "https://cors-anywhere.herokuapp.com/https://vgg16-crack-detection-app-2ecca2e18152.herokuapp.com/predict";
+      "https://cors-anywhere.herokuapp.com/https://vgg16-breakage-detection-app-725ac3f9988e.herokuapp.com/predict";
 
     try {
       const formData = new FormData();

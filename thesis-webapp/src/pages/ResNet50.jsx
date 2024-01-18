@@ -85,7 +85,7 @@ const ResNet50 = () => {
   // Function to send image to API
   const sendImageToAPI = async () => {
     const url =
-      "https://cors-anywhere.herokuapp.com/https://resnet50-crack-detection-app-f2bc954013b7.herokuapp.com/predict";
+      "https://cors-anywhere.herokuapp.com/https://resnet-breakage-detection-app-338b0522930c.herokuapp.com/predict";
 
     try {
       const formData = new FormData();

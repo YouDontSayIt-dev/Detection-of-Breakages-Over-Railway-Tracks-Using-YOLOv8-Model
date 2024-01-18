@@ -86,7 +86,7 @@ const InceptionV3 = () => {
   // Function to send image to API
   const sendImageToAPI = async () => {
     const url =
-      "https://cors-anywhere.herokuapp.com/https://incv3-crack-detection-app-187165d6d6c5.herokuapp.com/predict";
+      "https://cors-anywhere.herokuapp.com/https://incepv3-breakage-detection-app-41b2ba28caf8.herokuapp.com/predict";
 
     try {
       const formData = new FormData();
