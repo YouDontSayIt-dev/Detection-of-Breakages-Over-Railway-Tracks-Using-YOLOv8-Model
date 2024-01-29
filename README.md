@@ -8,7 +8,7 @@ Railway transportation has been a vital mode of transport for many years, primar
 To develop a real-time multi-scaled detection model over railway tracks using YOLOv8
 
 ## Documentation
-https://tinyurl.com/BreakageDetection
+[redacted]
 
 ## Dataset Link
 [redacted]
