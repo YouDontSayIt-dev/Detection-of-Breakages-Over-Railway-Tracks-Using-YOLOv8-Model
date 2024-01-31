@@ -7,6 +7,8 @@ import ThemeModeBtn from "../components/ThemeModeBtn";
 function HomePage() {
   const [theme, setTheme] = React.useState("light"); // Set the default value to "dark"
 
+  // On mount, read the default theme
+  // remove classname if theme is changed
   useEffect(() => {
     console.log("Theme changed:", theme);
     if (theme === "dark") {
@@ -16,6 +18,7 @@ function HomePage() {
     }
   }, [theme]);
 
+  // To toggle between dark and light mode
   const handleThemeChange = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
