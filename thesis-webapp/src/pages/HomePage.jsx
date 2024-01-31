@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HomePageButton from "../components/HomePageButton";
 import train from "../assets/train.png";
+import ThemeModeBtn from "../components/ThemeModeBtn";
 
 function HomePage() {
   return (
@@ -59,7 +60,8 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden">
+      <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden bg-black">
+        <ThemeModeBtn />
         <div className="lg:absolute lg:-bottom-20 lg:-right-20">
           <img src={train} alt="train"></img>
         </div>
