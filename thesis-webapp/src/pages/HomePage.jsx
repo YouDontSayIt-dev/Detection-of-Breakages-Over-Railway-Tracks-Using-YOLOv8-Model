@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageButton from "../components/HomePageButton";
 import train from "../assets/train.png";
 import ThemeModeBtn from "../components/ThemeModeBtn";
 
 function HomePage() {
+  const [theme, setTheme] = React.useState("light"); // Set the default value to "dark"
+
+  useEffect(() => {
+    console.log("Theme changed:", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <div className="flex  lg:flex-row min-h-screen font-Open [background:linear-gradient(0deg,rgba(34,138,136,0.5)_0%,rgba(7,16,23,0)_100%)] relative">
+    <div className="flex lg:flex-row min-h-screen font-Open [background:linear-gradient(0deg,rgba(34,138,136,0.5)_0%,rgba(7,16,23,0)_100%)] relative">
       <div className="w-full lg:w-3/5 px-3 lg:pl-32 pt-[20px] lg:pt-[200px]">
         <div>
           <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-2xl leading-normal lg:text-5xl md:pb-4">
@@ -60,8 +75,11 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden bg-black">
-        <ThemeModeBtn />
+      <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden dark:bg-red-300">
+        <ThemeModeBtn onClick={handleThemeChange} />
+        {/* <button className="bg-green-500 p-4 rounded-customFile" onClick={handleThemeChange}>
+          DarkMode
+        </button> */}
         <div className="lg:absolute lg:-bottom-20 lg:-right-20">
           <img src={train} alt="train"></img>
         </div>
