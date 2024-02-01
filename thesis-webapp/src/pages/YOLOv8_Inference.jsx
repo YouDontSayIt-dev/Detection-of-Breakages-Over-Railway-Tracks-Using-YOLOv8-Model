@@ -171,7 +171,7 @@ const Yolov8Inference = () => {
         </div>
 
         <div className="order-4  mb-[48px]">
-          <InferenceButton onClick={sendImageToAPI} />
+          <InferenceButton onClick={sendImageToAPI} theme={theme}/>
         </div>
 
         <div className="order-3 lg:hidden mb-8">
