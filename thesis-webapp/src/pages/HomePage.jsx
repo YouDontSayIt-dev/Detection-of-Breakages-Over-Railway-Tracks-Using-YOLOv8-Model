@@ -27,6 +27,9 @@ function HomePage() {
     <div className="flex lg:flex-row min-h-screen font-Open [background:linear-gradient(0deg,rgba(34,138,136,0.5)_0%,rgba(7,16,23,0)_100%)] relative dark:bg-customLightBackground">
       <div className="w-full lg:w-3/5 px-3 lg:pl-32 pt-[20px] lg:pt-[200px]">
         <div>
+          <div className="flex lg:hidden w-auto h-20 justify-end">
+            <ThemeModeBtn onClick={handleThemeChange} />
+          </div>
           <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-2xl leading-normal lg:text-5xl md:pb-4">
             WELCOME TO
           </h2>
@@ -50,6 +53,7 @@ function HomePage() {
             </svg>
           </div>
 
+          {/* FOR SMALL DVC */}
           <div className="flex lg:hidden w-full justify-center items-center pb-4">
             <div className="w-[242px] h-[242px] md:w-fit md:h-fit">
               <img src={train} alt="train"></img>
@@ -78,8 +82,12 @@ function HomePage() {
         </div>
       </div>
 
+      {/* FOR LARGE DVC */}
       <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden dark:bg-customLightBackground">
-        <ThemeModeBtn onClick={handleThemeChange} />
+        <div className="flex w-auto h-20 justify-end mr-20 mt-10">
+          <ThemeModeBtn onClick={handleThemeChange} />
+        </div>
+
         <div className="lg:absolute lg:-bottom-20 lg:-right-20">
           <img src={train} alt="train"></img>
         </div>

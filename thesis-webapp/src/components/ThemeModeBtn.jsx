@@ -8,7 +8,7 @@ const ThemeModeBtn = ({ onClick }) => {
     }
   };
   return (
-    <div className="flex w-auto h-20 justify-end mr-20 mt-10">
+    <div>
       <button onClick={onClick}>
         {/* INPUT BOX TOGGLE FOR MODE */}
         <label className="theme-switch mt-10 mr-40">
