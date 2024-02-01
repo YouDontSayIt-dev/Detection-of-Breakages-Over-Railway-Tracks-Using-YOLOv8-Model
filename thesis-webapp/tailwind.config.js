@@ -40,6 +40,7 @@ module.exports = {
     },
     boxShadow: {
       customShadow: "0px 8px 12.3px 0px #228A88",
+      customLightShadow: "0px 8px 12.3px 0px #FFFFFF",
       customImageDisplay: "0px 4px 20px 0px #228A88",
     },
   },

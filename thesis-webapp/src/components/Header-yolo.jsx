@@ -89,7 +89,7 @@ export default function Header(props) {
 
               {/* MODAL POPUP */}
               {isModalOpen && (
-                <div className="absolute top-[99px] right-5 lg:right-20 z-50 w-[280px] lg:w-[531px] h-[600px] lg:h-[515px] bg-customSidebarColor rounded-customPopUp p-8 text-ebony">
+                <div className="absolute top-[99px] right-5 lg:right-20 z-50 w-[280px] lg:w-[531px] h-[600px] lg:h-[515px] bg-customSidebarColor dark:bg-white rounded-customPopUp p-8 text-ebony dark:text-[#212121]">
                   <h1 className="w-full h-[10%] text-2xl font-semibold">
                     What is Inferencing?
                   </h1>
@@ -102,12 +102,12 @@ export default function Header(props) {
                     learned to recognize patterns and features that distinguish
                     different objects.
                   </p>
-                  {/* 
+                  
                   <div className="flex items-center justify-end w-full text-2xl">
                     <h1>Model's Accuracy: </h1>
-                    <h1 className="font-semibold text-4xl mb-4 ml-4">92%</h1>
+                    <h1 className="font-semibold text-4xl mb-4 ml-4">97%</h1>
                   </div>
-                  */}
+                 
                 </div>
               )}
             </div>

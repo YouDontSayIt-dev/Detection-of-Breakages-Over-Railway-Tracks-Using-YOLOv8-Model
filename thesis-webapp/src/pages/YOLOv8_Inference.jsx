@@ -159,7 +159,7 @@ const Yolov8Inference = () => {
       {/* CONTAINER FOR BUTTONS */}
       <div className=" flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
         <div className="order-1 mb-[48px]">
-          <UploadButton onChange={handleFileChange} />
+          <UploadButton onChange={handleFileChange} theme={theme} />
         </div>
 
         <div className="order-2 mb-[48px]">
