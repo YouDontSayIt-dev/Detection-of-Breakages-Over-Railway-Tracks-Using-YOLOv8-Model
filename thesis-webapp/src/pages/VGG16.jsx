@@ -10,15 +10,18 @@ import CrackNotDetectedModal from "../components/CrackNotDetectedModal";
 import Header from "../components/Header-vgg16";
 
 const Vgg16 = () => {
-  const [detectionOccurred, setDetectionOccurred] = useState(false);
-  const [upload, setUpload] = useState(null);
-  const [imgData, setimgData] = useState(null);
-  const [base64Image, setBase64Image] = useState(null);
-  const [isCrackNotDetectedModalOpen, setCrackNotDetectedModalOpen] = useState(null);
-  const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false);
-  const [outputOption, setOutputOption] = useState("image");
-  const [isInfering, setIsInfering] = useState(false);
+  // HOOKS
+  const [detectionOccurred, setDetectionOccurred] = useState(false); // To disable the inference button while infering
+  const [upload, setUpload] = useState(null); // Store the uploaded image in a hook
+  const [imgData, setimgData] = useState(null); // Store the bbox data in a hook
+  const [base64Image, setBase64Image] = useState(null); // Store the base64 image in a hook
+  const [isCrackNotDetectedModalOpen, setCrackNotDetectedModalOpen] =
+    useState(null); // New state for modal visibility
+  const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false); // New state for modal visibility
+  const [outputOption, setOutputOption] = useState("image"); // FOR RADIO BTN VALUE
+  const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
 
+  // Function to handle detection
   const handleDetection = (value) => {
     setDetectionOccurred(value);
   };
@@ -57,6 +60,7 @@ const Vgg16 = () => {
 
   const location = useLocation();
 
+  // Function to handle file change and convert the image to base64
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
       const file = event.target.files[0];
@@ -74,6 +78,7 @@ const Vgg16 = () => {
     }
   };
 
+  // Function to send the image to the API
   const sendImageToAPI = async () => {
     const url =
       "https://cors-anywhere.herokuapp.com/https://vgg16-breakage-detection-app-725ac3f9988e.herokuapp.com/predict";
@@ -97,6 +102,7 @@ const Vgg16 = () => {
     }
   };
 
+  // Function to render the modal depending on the detection result
   const renderModal = () => {
     if (detectionOccurred) {
       return (
