@@ -6,10 +6,21 @@ const ImageDisplay = ({
   bboxData,
   radioBtnValue,
   onDetection,
+  theme,
 }) => {
   const [detectionOccurred, setDetectionOccurred] = useState(false);
 
-  // For refresh btn 
+  // Effect to handle applying the theme class to the document
+  useEffect(() => {
+    console.log("Theme changed:", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  // For refresh btn
   const handleRefresh = () => {
     window.location.reload(true);
   };
@@ -37,8 +48,7 @@ const ImageDisplay = ({
 
       // Load the image onto the canvas
       const img = new Image();
-      
-      
+
       img.onload = () => {
         // Set the canvas dimensions
         canvas.width = img.width;
@@ -108,8 +118,8 @@ const ImageDisplay = ({
 
   if (radioBtnValue === "image") {
     return (
-      <div className="w-[280px] h-[300px] md:w-[602px] lg:w-[1152px] lg:h-[600px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
-        <div className="flex w-full h-[10%] justify-between items-center p-6 text-ebony font-bold text-2xl">
+      <div className=" dark:bg-[#D5DEDE] w-[280px] h-[300px] md:w-[602px] lg:w-[1152px] lg:h-[600px] mx-auto border-8 border-customImageDisplay dark:border-customLightImageDisplay dark:shadow-customImageLightDisplay shadow-customImageDisplay rounded-customImageDisplay">
+        <div className="flex w-full h-[10%] justify-between items-center p-6 text-ebony dark:text-active font-bold text-2xl">
           <h1>Result:</h1>
           <button onClick={handleRefresh}>
             <svg
@@ -137,8 +147,8 @@ const ImageDisplay = ({
     );
   } else if (radioBtnValue === "JSON") {
     return (
-      <div className="flex flex-col w-[280px] h-[300px] md:w-[602px] lg:w-[1152px] lg:h-[600px] mx-auto border-8 border-customImageDisplay shadow-customImageDisplay rounded-customImageDisplay">
-        <div className="flex w-full h-[10%] justify-between items-center p-6 text-ebony font-bold text-2xl hover:text-active">
+      <div className=" dark:bg-[#D5DEDE] flex flex-col w-[280px] h-[300px] md:w-[602px] lg:w-[1152px] lg:h-[600px] mx-auto border-8 border-customImageDisplay  dark:border-customLightImageDisplay dark:shadow-customImageLightDisplay shadow-customImageDisplay rounded-customImageDisplay">
+        <div className="flex w-full h-[10%] justify-between items-center p-6 text-ebony font-bold text-2xl dark:text-active hover:text-active">
           {/* BUTTON TO COPY THE BBOX DATA */}
           <button onClick={copyToClipboard}>Copy Code</button>
           <button onClick={handleRefresh}>
@@ -156,7 +166,7 @@ const ImageDisplay = ({
             </svg>
           </button>
         </div>
-        <div className="w-full h-[90%] text-ebony overflow-auto px-6">
+        <div className="w-full h-[90%] text-ebony dark:text-active overflow-auto px-6">
           {/* Display bounding box data */}
           <pre>{JSON.stringify(bboxData, null, 2)}</pre>
         </div>
@@ -178,4 +188,3 @@ const ImageDisplay = ({
 };
 
 export default ImageDisplay;
-

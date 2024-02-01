@@ -33,6 +33,7 @@ module.exports = {
       customBtn: "#228A88",
       customFile: "#228A88",
       customImageDisplay: "#FFF",
+      customLightImageDisplay: "#071017",
       customLightBorder: "#F7F7F2",
     },
     textShadow: {
@@ -42,6 +43,7 @@ module.exports = {
       customShadow: "0px 8px 12.3px 0px #228A88",
       customLightShadow: "0px 8px 12.3px 0px #FFFFFF",
       customImageDisplay: "0px 4px 20px 0px #228A88",
+      customImageLightDisplay: "0px 4px 20px 0px #FFFFFF",
     },
   },
   plugins: [],

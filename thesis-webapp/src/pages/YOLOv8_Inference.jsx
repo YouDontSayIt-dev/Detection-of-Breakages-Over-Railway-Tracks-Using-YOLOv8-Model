@@ -184,6 +184,7 @@ const Yolov8Inference = () => {
               bboxData={bboxData}
               radioBtnValue={outputOption}
               onDetection={handleDetection}
+              theme={theme}
             />
           </div>
         </div>
