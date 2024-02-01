@@ -153,7 +153,7 @@ const Yolov8Inference = () => {
   return (
     <div className="flex flex-col w-full h-full bg-customBackground dark:bg-[#228A88] overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
-      <Sidebar activePage={location.pathname} />
+      <Sidebar activePage={location.pathname} theme={theme}/>
       <Header onThemeChange={handleThemeChange}>YOLOv8 Breakage Detect</Header>
 
       {/* CONTAINER FOR BUTTONS */}

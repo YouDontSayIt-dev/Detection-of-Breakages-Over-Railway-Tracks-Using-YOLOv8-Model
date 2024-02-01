@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, ChevronLeft, ChevronDown } from "react-feather";
 import { NavLink } from "react-router-dom";
 import homeIcon from "../assets/homeIcon.png";
 
-const Sidebar = ({ activePage }) => {
+const Sidebar = ({ activePage, theme }) => {
   const [isCollapsible, setIsCollapsible] = useState(true);
   const [showSubOptions, setShowSubOptions] = useState(false);
+
+  // Effect to handle applying the theme class to the document
+  useEffect(() => {
+    console.log("Theme changed:", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
   const toggleCollapsible = () => {
     setIsCollapsible(!isCollapsible);
@@ -52,7 +62,7 @@ const Sidebar = ({ activePage }) => {
   return (
     <div className="fixed h-full z-50">
       <div
-        className={`flex flex-col h-full  bg-customSidebarColor rounded-br-customSidebar rounded-tr-customSidebar text-white z-50 ${
+        className={`flex flex-col h-full  bg-customSidebarColor dark:bg-customBackground rounded-br-customSidebar rounded-tr-customSidebar text-white z-50 ${
           isCollapsible ? "w-0" : "w-[335px]"
         } transition-all duration-500 ease-out`}
       >
