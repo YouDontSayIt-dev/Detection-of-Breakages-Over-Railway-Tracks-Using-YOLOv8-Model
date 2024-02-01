@@ -1,6 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ThemeModeBtn from "../components/ThemeModeBtn";
 
 export default function Header(props) {
+  const [theme, setTheme] = React.useState("light");
+
+  useEffect(() => {
+    console.log("Theme changed:", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    // Notify the parent component about the theme change
+    props.onThemeChange(theme);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme, props.onThemeChange]);
+
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
   // FOR MODAL POPUP
   const [isModalOpen, setModalOpen] = useState(false);
 
@@ -18,7 +38,7 @@ export default function Header(props) {
 
   return (
     <div className="relative w-full h-[120px] overflow-x-hidden z-30">
-      <div className="bg-[#071017] w-full h-[120px] fixed">
+      <div className="bg-[#071017] dark:bg-[#228A88] w-full h-[120px] fixed">
         <div className=" flex h-[10%] lg:h-[30%] ml-[80px] lg:ml-[125px] items-center md:justify-between pt-[56px] md:p-[56px]">
           {/* CONTAINER FOR TOP ITEMS  */}
           {/* LEFT ITEMS */}
@@ -43,6 +63,9 @@ export default function Header(props) {
             </div>
             {/* RIGHT ITEMS */}
             <div className="flex">
+              <div className="fixed right-24 md:right-28 top-10 md:top-12 lg:right-36 lg:top-14">
+                <ThemeModeBtn onClick={handleThemeChange} />
+              </div>
               <div
                 onMouseEnter={handleIconHover}
                 onMouseLeave={handleModalClose}
@@ -55,7 +78,7 @@ export default function Header(props) {
                   viewBox="0 0 56 54"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="cursor-pointer mr-4 md:h-[56px] md:w-[54px]"
+                  className="cursor-pointer mr-4 md:h-[40px] md:w-[38px] lg:h-[56px] lg:w-[54px]"
                 >
                   <path
                     d="M25.2 18.9H30.8V13.5H25.2M28 48.6C15.652 48.6 5.6 38.907 5.6 27C5.6 15.093 15.652 5.4 28 5.4C40.348 5.4 50.4 15.093 50.4 27C50.4 38.907 40.348 48.6 28 48.6ZM28 0C24.323 0 20.682 0.698376 17.2849 2.05525C13.8877 3.41213 10.8011 5.40094 8.20101 7.90812C2.94999 12.9716 0 19.8392 0 27C0 34.1608 2.94999 41.0284 8.20101 46.0919C10.8011 48.5991 13.8877 50.5879 17.2849 51.9448C20.682 53.3016 24.323 54 28 54C35.4261 54 42.548 51.1554 47.799 46.0919C53.05 41.0284 56 34.1608 56 27C56 23.4543 55.2758 19.9433 53.8686 16.6675C52.4615 13.3918 50.399 10.4153 47.799 7.90812C45.1989 5.40094 42.1123 3.41213 38.7151 2.05525C35.318 0.698376 31.677 0 28 0ZM25.2 40.5H30.8V24.3H25.2V40.5Z"
@@ -66,19 +89,25 @@ export default function Header(props) {
 
               {/* MODAL POPUP */}
               {isModalOpen && (
-                <div className="absolute top-[99px] right-5 lg:right-20 z-50 w-[280px] lg:w-[531px] h-[600px] lg:h-[515px] bg-customSidebarColor rounded-customPopUp p-8 text-ebony">
+                <div className="absolute top-[99px] right-5 lg:right-20 z-50 w-[280px] lg:w-[531px] h-[600px] lg:h-[515px] bg-customSidebarColor dark:bg-white rounded-customPopUp p-8 text-ebony dark:text-[#212121]">
                   <h1 className="w-full h-[10%] text-2xl font-semibold">
-                    What is ResNet-50?
+                    What is Inferencing?
                   </h1>
                   <p className="w-full h-[80%] py-4 text-base text-left lg:text-2xl">
-                    ResNet-50 is a deep convolutional neural network architecture that belongs to the ResNet (Residual Network) family. The key innovation in the ResNet architecture is the use of residual blocks, which contain shortcut connections (skip connections) that skip one or more layers. These skip connections enable the network to learn residual mappings, making it easier to train very deep networks.
+                    Inferencing refers to the process of using a trained model
+                    to make predictions or inferences on new, unseen data.
+                    Object detection involves identifying and locating objects
+                    within an image or a video frame. The trained model, often
+                    based on machine learning or deep learning techniques, has
+                    learned to recognize patterns and features that distinguish
+                    different objects.
                   </p>
-                  {/* 
+                  
                   <div className="flex items-center justify-end w-full text-2xl">
                     <h1>Model's Accuracy: </h1>
-                    <h1 className="font-semibold text-4xl mb-4 ml-4">99%</h1>
+                    <h1 className="font-semibold text-4xl mb-4 ml-4">97%</h1>
                   </div>
-                  */}
+                 
                 </div>
               )}
             </div>

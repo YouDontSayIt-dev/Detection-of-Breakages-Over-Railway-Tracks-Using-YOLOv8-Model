@@ -129,11 +129,27 @@ const ResNet50 = () => {
 
   const location = useLocation();
 
+  const [theme, setTheme] = useState("");
+
+  const handleThemeChange = (theme) => {
+    setTheme(theme);
+  };
+
+  // Effect to handle applying the theme class to the document
+  useEffect(() => {
+    console.log("Theme changed:", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
   return (
-    <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
+    <div className="flex flex-col w-full h-full bg-customBackground dark:bg-customLightBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT */}
       <Sidebar activePage={location.pathname} />
-      <Header>ResNet50 Model</Header>
+      <Header onThemeChange={handleThemeChange}>ResNet50 Model</Header>
 
       <div className="flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
         <div className="order-1 mb-[48px]">
