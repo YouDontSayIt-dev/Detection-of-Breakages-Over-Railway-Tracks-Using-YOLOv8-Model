@@ -5,17 +5,22 @@ import train from "../assets/train.png";
 import ThemeModeBtn from "../components/ThemeModeBtn";
 
 function HomePage() {
-  const [theme, setTheme] = React.useState("light"); // Set the default value to "dark"
+  // Read the theme from local storage on component mount
+  const savedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = React.useState(savedTheme);
 
-  // On mount, read the default theme
-  // remove classname if theme is changed
+  // On mount or theme change, update the local storage
   useEffect(() => {
-    console.log("Theme changed:", theme);
+    localStorage.setItem("theme", theme);
+
+    // Update the class based on the theme
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+
+    console.log("Theme changed to: ", theme);
   }, [theme]);
 
   // To toggle between dark and light mode
@@ -28,7 +33,7 @@ function HomePage() {
       <div className="w-full lg:w-3/5 px-3 lg:pl-32 pt-[20px] lg:pt-[200px]">
         <div>
           <div className="flex lg:hidden w-auto h-20 justify-end">
-            <ThemeModeBtn onClick={handleThemeChange} />
+            <ThemeModeBtn onClick={handleThemeChange} theme={theme}/>
           </div>
           <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-2xl leading-normal lg:text-5xl md:pb-4">
             WELCOME TO
@@ -85,7 +90,7 @@ function HomePage() {
       {/* FOR LARGE DVC */}
       <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden dark:bg-customLightBackground">
         <div className="flex w-auto h-20 justify-end mr-20 mt-10">
-          <ThemeModeBtn onClick={handleThemeChange} />
+          <ThemeModeBtn onClick={handleThemeChange} theme={theme}/>
         </div>
 
         <div className="lg:absolute lg:-bottom-20 lg:-right-20">

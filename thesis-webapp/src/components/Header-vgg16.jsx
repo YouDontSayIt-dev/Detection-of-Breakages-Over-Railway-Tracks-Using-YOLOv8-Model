@@ -2,21 +2,25 @@ import React, { useState, useEffect } from "react";
 import ThemeModeBtn from "../components/ThemeModeBtn";
 
 export default function Header(props) {
-  const [theme, setTheme] = React.useState("light");
+  // Read the theme from local storage on component mount
+  const savedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = React.useState(savedTheme || "light");
 
+  // On mount or theme change, update the local storage
   useEffect(() => {
-    console.log("Theme changed:", theme);
+    localStorage.setItem("theme", theme);
+
+    // Update the class based on the theme
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
 
-    // Notify the parent component about the theme change
-    props.onThemeChange(theme);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, props.onThemeChange]);
+    console.log("Theme here is: ", theme);
+  }, [theme]);
 
+  // To toggle between dark and light mode
   const handleThemeChange = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
@@ -64,7 +68,7 @@ export default function Header(props) {
             {/* RIGHT ITEMS */}
             <div className="flex">
               <div className="fixed right-24 md:right-28 top-10 md:top-12 lg:right-36 lg:top-14">
-                <ThemeModeBtn onClick={handleThemeChange} />
+                <ThemeModeBtn onClick={handleThemeChange} theme={theme}/>
               </div>
               <div
                 onMouseEnter={handleIconHover}
@@ -103,10 +107,10 @@ export default function Header(props) {
                     different objects.
                   </p>
                   
-                  <div className="flex items-center justify-end w-full text-2xl">
+                  {/* <div className="flex items-center justify-end w-full text-2xl">
                     <h1>Model's Accuracy: </h1>
                     <h1 className="font-semibold text-4xl mb-4 ml-4">97%</h1>
-                  </div>
+                  </div> */}
                  
                 </div>
               )}

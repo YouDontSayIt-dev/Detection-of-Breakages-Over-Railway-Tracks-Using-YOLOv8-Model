@@ -1,12 +1,14 @@
 import "./ThemeModeBtn.css";
 
-const ThemeModeBtn = ({ onClick }) => {
+const ThemeModeBtn = ({ onClick, theme }) => {
   const handleThemeChange = () => {
     // Call the onClick function passed as a prop
     if (onClick) {
       onClick();
     }
   };
+
+  console.log("Theme is: ", theme);
   return (
     <div>
       <button onClick={onClick}>
@@ -16,7 +18,8 @@ const ThemeModeBtn = ({ onClick }) => {
             type="checkbox"
             className="theme-switch__checkbox"
             id="themeSwitch"
-            defaultChecked={true}
+            initialChecked={false}
+            defaultChecked={theme === "dark" ? false : true}
             onChange={handleThemeChange}
           />
           <div className="theme-switch__container">

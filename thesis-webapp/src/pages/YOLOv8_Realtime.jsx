@@ -1,6 +1,6 @@
 import Sidebar from "../components/Sidebar";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import RealtimeDisplay from "../components/RealtimeDisplay";
 import Header from "../components/Header-yolo";
@@ -10,27 +10,34 @@ const Yolov8Realtime = () => {
 
   const location = useLocation(); //gets the current path location
 
-  const [theme, setTheme] = useState("");
+  // Read the theme from local storage on component mount
+  const savedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = React.useState(savedTheme || "light");
 
-  const handleThemeChange = (theme) => {
-    setTheme(theme);
-  };
-
-  // Effect to handle applying the theme class to the document
+  // On mount or theme change, update the local storage
   useEffect(() => {
-    console.log("Theme changed:", theme);
+    localStorage.setItem("theme", theme);
+
+    // Update the class based on the theme
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+
+    console.log("Theme is: ", theme);
   }, [theme]);
+
+  // To toggle between dark and light mode
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
 
   return (
     <div className="flex flex-col w-full h-full bg-customBackground dark:bg-customLightBackground overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
-      <Header onThemeChange={handleThemeChange}>
+      <Header onThemeChange={handleThemeChange} theme={theme}>
         Yolov8 Breakage Detect
       </Header>
 

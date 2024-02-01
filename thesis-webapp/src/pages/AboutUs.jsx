@@ -15,17 +15,22 @@ import ThemeModeBtn from "../components/ThemeModeBtn";
 const AboutUs = () => {
   const location = useLocation();
 
-  const [theme, setTheme] = React.useState("light"); // Set the default value to "dark"
+  // Read the theme from local storage on component mount
+  const savedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = React.useState(savedTheme || "light");
 
-  // On mount, read the default theme
-  // remove classname if theme is changed
+  // On mount or theme change, update the local storage
   useEffect(() => {
-    console.log("Theme changed:", theme);
+    localStorage.setItem("theme", theme);
+
+    // Update the class based on the theme
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+
+    console.log("Theme is: ", theme);
   }, [theme]);
 
   // To toggle between dark and light mode
@@ -63,7 +68,7 @@ const AboutUs = () => {
             {/* RIGHT ITEMS */}
             <div className="flex">
               <div className="fixed right-10 md:right-15 top-10 md:top-12 lg:right-20 lg:top-14">
-                <ThemeModeBtn onClick={handleThemeChange} />
+                <ThemeModeBtn onClick={handleThemeChange} theme={theme}/>
               </div>
             </div>
           </div>
