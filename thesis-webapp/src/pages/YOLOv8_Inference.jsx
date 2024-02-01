@@ -166,6 +166,7 @@ const Yolov8Inference = () => {
           <RadioInput
             selectedValue={outputOption}
             onRadioChange={handleRadioChange}
+            theme={theme}
           />
         </div>
 

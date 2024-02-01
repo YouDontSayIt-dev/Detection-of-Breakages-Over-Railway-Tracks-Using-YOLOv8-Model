@@ -16,11 +16,22 @@ class RadioInput extends Component {
     this.props.onRadioChange(event.target.value); // Pass the selected value to the parent component
   };
 
+  componentDidMount() {
+    const { theme } = this.props; // Get the theme from the props
+    console.log("Theme changed:", theme);
+    
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
   render() {
     return (
       <div className=" w-[272px] h-[40px] lg:w-[254px] lg:h-[56px] mb-8">
         <label className="text-ebony">Step 2: Choose Inference Result</label>
-        <div className="radio-input">
+        <div className="radio-input dark:border-customLightBorder dark:shadow-customLightShadow">
           <label>
             <input
               type="radio"
