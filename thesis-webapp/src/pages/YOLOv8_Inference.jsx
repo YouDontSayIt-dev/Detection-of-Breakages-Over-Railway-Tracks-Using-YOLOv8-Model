@@ -134,11 +134,27 @@ const Yolov8Inference = () => {
     }
   };
 
+  const [theme, setTheme] = useState("");
+
+  const handleThemeChange = (theme) => {
+    setTheme(theme);
+  };
+
+  // Effect to handle applying the theme class to the document
+  useEffect(() => {
+    console.log("Theme changed:", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
   return (
-    <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
+    <div className="flex flex-col w-full h-full bg-customBackground dark:bg-[#228A88] overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
       <Sidebar activePage={location.pathname} />
-      <Header>YOLOv8 Breakage Detect</Header>
+      <Header onThemeChange={handleThemeChange}>YOLOv8 Breakage Detect</Header>
 
       {/* CONTAINER FOR BUTTONS */}
       <div className=" flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">

@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import ThemeModeBtn from "../components/ThemeModeBtn";
 
 export default function Header(props) {
-  const [theme, setTheme] = React.useState("light"); // Set the default value to "dark"
+  const [theme, setTheme] = React.useState("light");
 
-  // On mount, read the default theme
-  // remove classname if theme is changed
   useEffect(() => {
     console.log("Theme changed:", theme);
     if (theme === "dark") {
@@ -13,9 +11,12 @@ export default function Header(props) {
     } else {
       document.documentElement.classList.remove("dark");
     }
-  }, [theme]);
 
-  // To toggle between dark and light mode
+    // Notify the parent component about the theme change
+    props.onThemeChange(theme);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme, props.onThemeChange]);
+
   const handleThemeChange = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   };
@@ -113,6 +114,6 @@ export default function Header(props) {
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   );
 }
