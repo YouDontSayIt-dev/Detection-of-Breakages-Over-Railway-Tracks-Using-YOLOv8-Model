@@ -63,7 +63,7 @@ export default function Header(props) {
             </div>
             {/* RIGHT ITEMS */}
             <div className="flex">
-              <div className="hidden md:block fixed right-[106px] top-12 lg:right-36 lg:top-14">
+              <div className="fixed right-24 md:right-28 top-10 md:top-12 lg:right-36 lg:top-14">
                 <ThemeModeBtn onClick={handleThemeChange} />
               </div>
               <div

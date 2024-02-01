@@ -260,7 +260,7 @@
 /* Media queries for different screen sizes */
 
 /* Small screens (e.g., smartphones) */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 760px) {
   .theme-switch {
     --toggle-size: 5px;
   }
