@@ -134,27 +134,51 @@ const Yolov8Inference = () => {
     }
   };
 
+  // Read the theme from local storage on component mount
+  const savedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = React.useState(savedTheme || "light");
+
+  // On mount or theme change, update the local storage
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+
+    // Update the class based on the theme
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    console.log("Theme is: ", theme);
+  }, [theme]);
+
+  // To toggle between dark and light mode
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
+    <div className="flex flex-col w-full h-full bg-customBackground dark:bg-[#228A88] overflow-x-hidden">
       {/* SIDEBAR COMPONENT  */}
-      <Sidebar activePage={location.pathname} />
-      <Header>YOLOv8 Breakage Detect</Header>
+      <Sidebar activePage={location.pathname} theme={theme}/>
+      <Header onThemeChange={handleThemeChange} theme={theme}>YOLOv8 Breakage Detect</Header>
 
       {/* CONTAINER FOR BUTTONS */}
       <div className=" flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
         <div className="order-1 mb-[48px]">
-          <UploadButton onChange={handleFileChange} />
+          <UploadButton onChange={handleFileChange} theme={theme} />
         </div>
 
         <div className="order-2 mb-[48px]">
           <RadioInput
             selectedValue={outputOption}
             onRadioChange={handleRadioChange}
+            theme={theme}
           />
         </div>
 
         <div className="order-4  mb-[48px]">
-          <InferenceButton onClick={sendImageToAPI} />
+          <InferenceButton onClick={sendImageToAPI} theme={theme}/>
         </div>
 
         <div className="order-3 lg:hidden mb-8">
@@ -167,6 +191,7 @@ const Yolov8Inference = () => {
               bboxData={bboxData}
               radioBtnValue={outputOption}
               onDetection={handleDetection}
+              theme={theme}
             />
           </div>
         </div>
@@ -181,6 +206,7 @@ const Yolov8Inference = () => {
           bboxData={bboxData}
           radioBtnValue={outputOption}
           onDetection={handleDetection}
+          theme={theme}
         />
       </div>
 

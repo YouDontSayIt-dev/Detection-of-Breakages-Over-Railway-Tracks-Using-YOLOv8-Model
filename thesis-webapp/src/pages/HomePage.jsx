@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageButton from "../components/HomePageButton";
 import train from "../assets/train.png";
+import ThemeModeBtn from "../components/ThemeModeBtn";
 
 function HomePage() {
+  // Read the theme from local storage on component mount
+  const savedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = React.useState(savedTheme);
+
+  // On mount or theme change, update the local storage
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+
+    // Update the class based on the theme
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    console.log("Theme changed to: ", theme);
+  }, [theme]);
+
+  // To toggle between dark and light mode
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <div className="flex  lg:flex-row min-h-screen font-Open [background:linear-gradient(0deg,rgba(34,138,136,0.5)_0%,rgba(7,16,23,0)_100%)] relative">
+    <div className="flex lg:flex-row min-h-screen font-Open [background:linear-gradient(0deg,rgba(34,138,136,0.5)_0%,rgba(7,16,23,0)_100%)] relative dark:bg-customLightBackground">
       <div className="w-full lg:w-3/5 px-3 lg:pl-32 pt-[20px] lg:pt-[200px]">
         <div>
+          <div className="flex lg:hidden w-auto h-20 justify-end">
+            <ThemeModeBtn onClick={handleThemeChange} theme={theme}/>
+          </div>
           <h2 className="text-[#EBEBEB] font-bold text-base text-center lg:text-left md:text-2xl leading-normal lg:text-5xl md:pb-4">
             WELCOME TO
           </h2>
@@ -31,6 +58,7 @@ function HomePage() {
             </svg>
           </div>
 
+          {/* FOR SMALL DVC */}
           <div className="flex lg:hidden w-full justify-center items-center pb-4">
             <div className="w-[242px] h-[242px] md:w-fit md:h-fit">
               <img src={train} alt="train"></img>
@@ -38,7 +66,7 @@ function HomePage() {
           </div>
 
           <div className="text-center lg:text-justify text-base md:text-2xl w-full xl:w-[930px] ">
-            <p className="text-[#228A88] font-bold block pb-4 tracking-widest">
+            <p className="text-[#228A88] font-bold block pb-4 tracking-widest dark:text-[#EBEBEB]">
               Detection of Breakages Over Railway Tracks Using YOLOv8 Model
             </p>
             <p className="text-[#EBEBEB] text-sm md:text-2xl leading-normal w-full xl:w-[930px] pb-8 lg:pb-16">
@@ -59,7 +87,12 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden">
+      {/* FOR LARGE DVC */}
+      <div className="hidden lg:block w-full lg:w-2/5 lg:relative lg:overflow-hidden dark:bg-customLightBackground">
+        <div className="flex w-auto h-20 justify-end mr-20 mt-10">
+          <ThemeModeBtn onClick={handleThemeChange} theme={theme}/>
+        </div>
+
         <div className="lg:absolute lg:-bottom-20 lg:-right-20">
           <img src={train} alt="train"></img>
         </div>

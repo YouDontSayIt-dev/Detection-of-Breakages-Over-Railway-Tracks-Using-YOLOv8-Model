@@ -10,15 +10,18 @@ import CrackNotDetectedModal from "../components/CrackNotDetectedModal";
 import Header from "../components/Header-vgg16";
 
 const Vgg16 = () => {
-  const [detectionOccurred, setDetectionOccurred] = useState(false);
-  const [upload, setUpload] = useState(null);
-  const [imgData, setimgData] = useState(null);
-  const [base64Image, setBase64Image] = useState(null);
-  const [isCrackNotDetectedModalOpen, setCrackNotDetectedModalOpen] = useState(null);
-  const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false);
-  const [outputOption, setOutputOption] = useState("image");
-  const [isInfering, setIsInfering] = useState(false);
+  // HOOKS
+  const [detectionOccurred, setDetectionOccurred] = useState(false); // To disable the inference button while infering
+  const [upload, setUpload] = useState(null); // Store the uploaded image in a hook
+  const [imgData, setimgData] = useState(null); // Store the bbox data in a hook
+  const [base64Image, setBase64Image] = useState(null); // Store the base64 image in a hook
+  const [isCrackNotDetectedModalOpen, setCrackNotDetectedModalOpen] =
+    useState(null); // New state for modal visibility
+  const [isCrackDetectedModalOpen, setCrackDetectedModalOpen] = useState(false); // New state for modal visibility
+  const [outputOption, setOutputOption] = useState("image"); // FOR RADIO BTN VALUE
+  const [isInfering, setIsInfering] = useState(false); // To disable the inference button while infering
 
+  // Function to handle detection
   const handleDetection = (value) => {
     setDetectionOccurred(value);
   };
@@ -57,6 +60,7 @@ const Vgg16 = () => {
 
   const location = useLocation();
 
+  // Function to handle file change and convert the image to base64
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
       const file = event.target.files[0];
@@ -74,6 +78,7 @@ const Vgg16 = () => {
     }
   };
 
+  // Function to send the image to the API
   const sendImageToAPI = async () => {
     const url =
       "https://cors-anywhere.herokuapp.com/https://vgg16-breakage-detection-app-725ac3f9988e.herokuapp.com/predict";
@@ -97,6 +102,7 @@ const Vgg16 = () => {
     }
   };
 
+  // Function to render the modal depending on the detection result
   const renderModal = () => {
     if (detectionOccurred) {
       return (
@@ -117,25 +123,49 @@ const Vgg16 = () => {
     }
   };
 
+  // Read the theme from local storage on component mount
+  const savedTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = React.useState(savedTheme || "light");
+
+  // On mount or theme change, update the local storage
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+
+    // Update the class based on the theme
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    console.log("Theme is: ", theme);
+  }, [theme]);
+
+  // To toggle between dark and light mode
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+  };
+
   return (
-    <div className="flex flex-col w-full h-full bg-customBackground overflow-x-hidden">
+    <div className="flex flex-col w-full h-full bg-customBackground dark:bg-customLightBackground overflow-x-hidden">
       <Sidebar activePage={location.pathname} />
-      <Header>VGG16 Model</Header>
+      <Header onThemeChange={handleThemeChange} theme={theme}>VGG16 Model</Header>
 
       <div className="flex flex-col lg:flex-row justify-center lg:space-x-[100px] items-center z-10 mx-6">
         <div className="order-1 mb-[48px]">
-          <UploadButton onChange={handleFileChange} />
+          <UploadButton onChange={handleFileChange} theme={theme}/>
         </div>
 
         <div className="order-2 mb-[48px]">
           <RadioInput
             selectedValue={outputOption}
             onRadioChange={handleRadioChange}
+            theme={theme}
           />
         </div>
 
         <div className="order-4  mb-[48px]">
-          <InferenceButton onClick={sendImageToAPI} />
+          <InferenceButton onClick={sendImageToAPI} theme={theme}/>
         </div>
 
         <div className="order-3 lg:hidden mb-8">
