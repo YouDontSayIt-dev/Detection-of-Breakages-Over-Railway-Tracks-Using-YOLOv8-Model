@@ -1,3 +1,44 @@
+/***************************************************************************************************
+ * Program Title: Breakage Detect
+ * Date Written: August 26, 2023 | Date Revised: February 2, 2024
+ * 
+ * Programmers:
+ *   - Muyco, Mathew James P.
+ *   - Blanco, James Luis B.
+ *   - Libardo, Dominique R.
+ *   - Haber, Jhon Mark B.
+ * 
+ * Where the Program Fits in the General System Designs:
+ *   This program plays a pivotal role in detecting the presence or absence of breakages
+ *   in the railways, contributing to the overall safety and maintenance of the railway systems.
+ * 
+ * Purpose:
+ *   The objective of this program is to automate the railway inspection process by 
+ *   incorporating the YOLOv8. This enhances efficiency and user-friendliness. Highlighting
+ *   its cost-effectiveness and real-time accessibility through web and mobile devices.
+ * 
+ * Data Structures, Algorithms, and Control:
+ *   - Data Structures:
+ *        This program utilizes session storage that provides a way to organize and store data temporarily. 
+ *        Each key-value pair stored in session storage is essentially a piece of data that can be retrieved
+ *        and manipulated during the user's interaction with the web page.
+ *   - Algorithms:
+ *        This program primarily integrated YOLOv8 object detection algorithm and the three 
+ *        known CNN algorithms namely, VGG-16, Inception V3, and ResNet-50. 
+ *   - Control:
+ *        (1) Image Data Acquisition - handle the image coming from the device's file or camera using the
+ *            function "handleFileChange".
+ *        (2) The YOLOv8 Algorithm - image will be stored in the "bboxdata" variable where it serves as 
+ *            a container for the bounding box data obtained from the machine learning model's inference, 
+ *            and it is also used to update the UI and display the results.
+ *        (3) The CNN Models - image will pass through three CNN models to determine 
+ *            the presence or absence of a railway breakage by the function called "sendImageToAPI". 
+ *        (4) Popup Alert - a modal will be shown ensuring correct response. An if-else statement was used
+ *            to determine whether there are breakages detected or none.
+ *        (5) Error Handling - The .catch method was used to handle errors in case the axios request fails. 
+ *            If there's an error during the API request, it will log the error message to the console.
+ ****************************************************************************************************/
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import HomePageButton from "../components/HomePageButton";
