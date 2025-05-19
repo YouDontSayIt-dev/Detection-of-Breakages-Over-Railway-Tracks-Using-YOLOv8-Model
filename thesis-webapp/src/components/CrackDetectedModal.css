@@ -1,0 +1,122 @@
+.crack-detected-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.warning {
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.modal-container {
+  position: relative;
+  width: 500px;
+  height: 250px;
+  text-align: center;
+}
+
+.modal-top {
+  background-color: #228a88;
+  height: 40%;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  border: 3px solid #ffffff;
+}
+
+.centered-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-bottom {
+  background-color: #ebebeb;
+  height: 80%;
+  border-radius: 0 0 20px 20px;
+  border: 3px solid #ffffff;
+  box-shadow: -16px 17px 19px -2px rgba(0, 0, 0, 1);
+  -webkit-box-shadow: -16px 17px 19px -2px rgba(0, 0, 0, 1);
+  -moz-box-shadow: -16px 17px 19px -2px rgba(0, 0, 0, 1);
+}
+
+.modal-caption {
+  font-size: 24px;
+}
+
+.close-button {
+  color: white;
+  display: block;
+  margin-top: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  background-color: #e65353;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-decoration: none;
+  border-radius: 24px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.close-button:hover {
+  background-color: #df3a3a;
+}
+
+.close-icon {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.close-icon:hover {
+  color: #000000;
+  transition: color 0.3s;
+}
+
+/* Media Query for screens smaller than 760px */
+@media screen and (max-width: 760px) {
+  .modal-container {
+    width: 350px;
+  }
+
+  .warning {
+    font-size: 24px;
+  }
+
+  .modal-caption {
+    font-size: 16px;
+  }
+
+  .centered-svg {
+    width: 50px;
+  }
+
+  .modal-top {
+    height: 30%;
+  }
+
+  .modal-bottom {
+    height: 60%;
+    box-shadow: 0px 2px 400px 200px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 0px 2px 400px 200px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 2px 400px 200px rgba(0, 0, 0, 1);
+  }
+
+  .close-button {
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 12px;
+  }
+}
